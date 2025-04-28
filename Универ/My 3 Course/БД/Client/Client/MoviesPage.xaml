@@ -1,0 +1,49 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.MoviesPage"
+             Title="Фильмы">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <!-- Поисковая строка -->
+        <SearchBar Placeholder="Введите название или жанр для поиска"
+                   TextChanged="OnSearchBarTextChanged"/>
+
+        <!-- Заголовки таблицы с разделительной линией снизу -->
+        <Grid Padding="10" ColumnDefinitions="2*, 2*, 2*, 3*"
+              BackgroundColor="LightGray">
+            <Label Text="ID" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
+            <Label Text="Название" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="1"/>
+            <Label Text="Длительность (мин)" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="2"/>
+            <Label Text="Жанр" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="3"/>
+        </Grid>
+
+        <!-- Таблица фильмов с пользовательскими разделительными линиями -->
+        <CollectionView x:Name="MovieList"
+                        SelectionMode="Single"
+                        SelectionChanged="OnMovieSelected"
+                        Margin="0,5,0,5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid Padding="10" ColumnDefinitions="2*, 2*, 2*, 3*">
+                            <Label Grid.Column="0" Text="{Binding MovieId}" />
+                            <Label Grid.Column="1" Text="{Binding Name}" />
+                            <Label Grid.Column="2" Text="{Binding Duration}" />
+                            <Label Grid.Column="3" Text="{Binding Genre}" />
+                        </Grid>
+                        <!-- Разделительная линия между строками -->
+                        <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Кнопки управления фильмами -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Добавить" Clicked="OnAddMovieClicked" />
+            <Button Text="Редактировать" Clicked="OnEditMovieClicked" />
+            <Button Text="Удалить" Clicked="OnDeleteMovieClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

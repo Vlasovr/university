@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.SessionFormPage"
+             Title="{Binding PageTitle}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <!-- Скрытое поле для ID -->
+            <Entry x:Name="SessionIdEntry" Placeholder="ID" IsVisible="False" />
+
+            <!-- Выбор зала -->
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Button x:Name="SelectHallButton" Text="Выберите зал" Clicked="OnSelectHallClicked" />
+                <Label x:Name="SelectedHallLabel" Text="Не выбрано" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Ввод времени начала -->
+            <Label Text="Время начала:" />
+            <DatePicker x:Name="StartDatePicker" />
+            <TimePicker x:Name="StartTimePicker" />
+
+            <!-- Ввод времени окончания -->
+            <Label Text="Время окончания:" />
+            <DatePicker x:Name="EndDatePicker" />
+            <TimePicker x:Name="EndTimePicker" />
+
+            <!-- Ввод доступных мест -->
+            <Label Text="Доступные места:" />
+            <Entry x:Name="AvailableSeatsEntry" Placeholder="Введите количество доступных мест" Keyboard="Numeric" />
+
+            <!-- Ввод формата -->
+            <Label Text="Формат:" />
+            <Entry x:Name="FormatEntry" Placeholder="Введите формат (например, 3D, IMAX)" />
+
+            <!-- Кнопки управления -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                <Button Text="Сохранить" Clicked="OnSaveClicked" />
+                <Button Text="Отмена" Clicked="OnCancelClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

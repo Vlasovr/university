@@ -1,0 +1,52 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.MainPage"
+             Title="Служащие">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <!-- Локатор для поиска -->
+        <SearchBar Placeholder="Введите ФИО для поиска"
+                   TextChanged="OnSearchBarTextChanged"/>
+
+        <!-- Заголовки таблицы с разделительной линией снизу -->
+        <Grid Padding="10" ColumnDefinitions="2*, 2*, 2*, 3*, 3*"
+              BackgroundColor="LightGray">
+            <Label Text="ФИО" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
+            <Label Text="Телефон" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="1"/>
+            <Label Text="Должность" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="2"/>
+            <Label Text="Email" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="3"/>
+            <Label Text="Адрес" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="4"/>
+            
+        </Grid>
+
+        <!-- Таблица сотрудников с пользовательскими разделительными линиями -->
+        <CollectionView x:Name="EmployeeList"
+                        SelectionMode="Single"
+                        SelectionChanged="OnEmployeeSelected"
+                        Margin="0,5,0,5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid Padding="10" ColumnDefinitions="2*, 2*, 2*, 3*, 3*">
+                            <Label Grid.Column="0" Text="{Binding FullName}" />
+                            <Label Grid.Column="1" Text="{Binding Phone}" />
+                            <Label Grid.Column="2" Text="{Binding Position}" />
+                            <Label Grid.Column="3" Text="{Binding Email}" />
+                            <Label Grid.Column="4" Text="{Binding Address}" />
+                        </Grid>
+                        <!-- Разделительная линия между строками -->
+                        <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Кнопки управления -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Добавить" Clicked="OnAddEmployeeClicked" />
+            <Button Text="Редактировать" Clicked="OnEditEmployeeClicked" />
+            <Button Text="Удалить" Clicked="OnDeleteEmployeeClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.SeatFormPage"
+             Title="{Binding PageTitle}">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <!-- Скрытое поле для ID -->
+        <Entry x:Name="SeatIdEntry" Placeholder="ID" IsVisible="False" />
+
+        <!-- Выбор зала -->
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Button x:Name="SelectHallButton" Text="Выберите зал" Clicked="OnSelectHallClicked" />
+            <Label x:Name="SelectedHallLabel" Text="Не выбрано" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <Entry x:Name="RowEntry" Placeholder="Ряд" />
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Label Text="Электронное:" VerticalOptions="Center" />
+            <Switch x:Name="IsElectronicSwitch" />
+        </HorizontalStackLayout>
+
+        <!-- Кнопки управления -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Сохранить" Clicked="OnSaveClicked" />
+            <Button Text="Отмена" Clicked="OnCancelClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

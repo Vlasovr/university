@@ -1,0 +1,199 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net9.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Client
+build_property.ProjectDir = /Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/ClientFormPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.ClientFormPage.xaml
+build_metadata.AdditionalFiles.TargetPath = ClientFormPage.xaml
+build_metadata.AdditionalFiles.RelativePath = ClientFormPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/ClientPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.ClientPage.xaml
+build_metadata.AdditionalFiles.TargetPath = ClientPage.xaml
+build_metadata.AdditionalFiles.RelativePath = ClientPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/EmployeeFormPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.EmployeeFormPage.xaml
+build_metadata.AdditionalFiles.TargetPath = EmployeeFormPage.xaml
+build_metadata.AdditionalFiles.RelativePath = EmployeeFormPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/HallFormPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.HallFormPage.xaml
+build_metadata.AdditionalFiles.TargetPath = HallFormPage.xaml
+build_metadata.AdditionalFiles.RelativePath = HallFormPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/HallsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.HallsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = HallsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = HallsPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/MovieFormPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.MovieFormPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MovieFormPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MovieFormPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/MoviesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.MoviesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MoviesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MoviesPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/ReviewFormPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.ReviewFormPage.xaml
+build_metadata.AdditionalFiles.TargetPath = ReviewFormPage.xaml
+build_metadata.AdditionalFiles.RelativePath = ReviewFormPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/ReviewsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.ReviewsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = ReviewsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = ReviewsPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SeatFormPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SeatFormPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SeatFormPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SeatFormPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SeatsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SeatsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SeatsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SeatsPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SelectClientPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SelectClientPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SelectClientPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SelectClientPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SelectEmployeePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SelectEmployeePage.xaml
+build_metadata.AdditionalFiles.TargetPath = SelectEmployeePage.xaml
+build_metadata.AdditionalFiles.RelativePath = SelectEmployeePage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SelectHallPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SelectHallPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SelectHallPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SelectHallPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SelectMoviePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SelectMoviePage.xaml
+build_metadata.AdditionalFiles.TargetPath = SelectMoviePage.xaml
+build_metadata.AdditionalFiles.RelativePath = SelectMoviePage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SelectSeatPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SelectSeatPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SelectSeatPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SelectSeatPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SelectSessionPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SelectSessionPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SelectSessionPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SelectSessionPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SessionEmployeeFormPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SessionEmployeeFormPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SessionEmployeeFormPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SessionEmployeeFormPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SessionEmployeesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SessionEmployeesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SessionEmployeesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SessionEmployeesPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SessionFormPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SessionFormPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SessionFormPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SessionFormPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SessionMovieFormPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SessionMovieFormPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SessionMovieFormPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SessionMovieFormPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SessionMoviePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SessionMoviePage.xaml
+build_metadata.AdditionalFiles.TargetPath = SessionMoviePage.xaml
+build_metadata.AdditionalFiles.RelativePath = SessionMoviePage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/SessionPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.SessionPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SessionPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SessionPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/TicketFormPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.TicketFormPage.xaml
+build_metadata.AdditionalFiles.TargetPath = TicketFormPage.xaml
+build_metadata.AdditionalFiles.RelativePath = TicketFormPage.xaml
+
+[/Users/Roman/Documents/Универ/My 3 Course/БД/Client/Client/TicketsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Client.TicketsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = TicketsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = TicketsPage.xaml

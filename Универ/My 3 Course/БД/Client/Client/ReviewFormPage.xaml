@@ -1,0 +1,33 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.ReviewFormPage"
+             Title="Отзыв">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <!-- Поля ввода для отзывов -->
+        <Entry x:Name="ReviewIdEntry" Placeholder="ID" IsVisible="False" /> <!-- Скрыто, если ID генерируется автоматически -->
+
+        <!-- Выбор фильма -->
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Button x:Name="SelectMovieButton" Text="Выберите фильм" Clicked="OnSelectMovieClicked" />
+            <Label x:Name="SelectedMovieLabel" Text="Не выбрано" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <!-- Выбор клиента -->
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Button x:Name="SelectClientButton" Text="Выберите клиента" Clicked="OnSelectClientClicked" />
+            <Label x:Name="SelectedClientLabel" Text="Не выбрано" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <Entry x:Name="RatingEntry" Placeholder="Рейтинг" Keyboard="Numeric" />
+        <Editor x:Name="CommentEditor" Placeholder="Комментарий" HeightRequest="100" />
+        <Entry x:Name="SourceEntry" Placeholder="Источник" />
+
+        <!-- Кнопки управления -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Сохранить" Clicked="OnSaveClicked" />
+            <Button Text="Отмена" Clicked="OnCancelClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,17 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.HallFormPage"
+             Title="Зал">
+    
+    <VerticalStackLayout Padding="10">
+        <!-- Если требуется отображать HallId, можно добавить Entry для него, но обычно PK генерируется автоматически -->
+        <Entry x:Name="RatingEntry" Placeholder="Рейтинг" Keyboard="Numeric" />
+        <Entry x:Name="CapacityEntry" Placeholder="Вместимость" Keyboard="Numeric" />
+        <Entry x:Name="CleaningScheduleEntry" Placeholder="График уборки" />
+        
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button Text="Сохранить" Clicked="OnSaveClicked" />
+            <Button Text="Отмена" Clicked="OnCancelClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

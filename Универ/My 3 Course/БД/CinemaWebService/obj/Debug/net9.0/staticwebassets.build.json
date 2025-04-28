@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "9vMvmUU4MOC3bOhiKKOKlX/tUWt2wKVZoTPXNM8bues=",
+  "Source": "CinemaWebService",
+  "BasePath": "_content/CinemaWebService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

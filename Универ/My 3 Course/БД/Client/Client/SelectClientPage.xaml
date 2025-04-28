@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.SelectClientPage"
+             Title="Выберите клиента">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <!-- Поисковая строка для фильтрации клиентов -->
+        <SearchBar x:Name="ClientSearchBar"
+                   Placeholder="Поиск клиента..."
+                   TextChanged="OnSearchBarTextChanged" />
+
+        <!-- Список клиентов -->
+        <CollectionView x:Name="ClientsCollectionView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnClientSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding FullName}" FontSize="Medium" />
+                        <!-- Вы можете добавить дополнительные детали клиента здесь -->
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+
+</ContentPage>

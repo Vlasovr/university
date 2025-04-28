@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.SeatsPage"
+             Title="Места">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <!-- Поисковая строка -->
+        <SearchBar Placeholder="Введите ID зала или ряд для поиска"
+                   TextChanged="OnSearchBarTextChanged"/>
+
+        <!-- Заголовки таблицы с разделительной линией снизу -->
+        <Grid Padding="10" ColumnDefinitions="1*, 3*, 2*, 2*"
+              BackgroundColor="LightGray">
+            <Label Text="ID" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
+            <Label Text="Ряд" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="1"/>
+            <Label Text="Зал ID" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="2"/>
+            <Label Text="Электронное" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="3"/>
+        </Grid>
+
+        <!-- Индикатор загрузки -->
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+
+        <!-- Таблица мест с пользовательскими разделительными линиями -->
+        <CollectionView x:Name="SeatList"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSeatSelected"
+                        Margin="0,5,0,5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid Padding="10" ColumnDefinitions="1*, 3*, 2*, 2*">
+                            <Label Grid.Column="0" Text="{Binding SeatId}" />
+                            <Label Grid.Column="1" Text="{Binding Row}" />
+                            <Label Grid.Column="2" Text="{Binding HallId}" />
+                            <Label Grid.Column="3" Text="{Binding IsElectronic, Converter={StaticResource BoolToYesNoConverter}}" />
+                        </Grid>
+                        <!-- Разделительная линия между строками -->
+                        <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Кнопки управления местами -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Добавить" Clicked="OnAddSeatClicked" />
+            <Button Text="Редактировать" Clicked="OnEditSeatClicked" />
+            <Button Text="Удалить" Clicked="OnDeleteSeatClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

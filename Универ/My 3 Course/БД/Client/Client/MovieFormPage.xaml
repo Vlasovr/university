@@ -1,0 +1,21 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.MovieFormPage"
+             Title="Фильм">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <!-- Поля ввода для фильмов -->
+        <!-- Если MovieId генерируется автоматически на сервере, это поле можно скрыть или оставить пустым -->
+        <Entry x:Name="MovieIdEntry" Placeholder="ID" IsVisible="False" />
+        <Entry x:Name="NameEntry" Placeholder="Название" />
+        <Entry x:Name="DurationEntry" Placeholder="Длительность (мин)" Keyboard="Numeric" />
+        <Entry x:Name="GenreEntry" Placeholder="Жанр" />
+
+        <!-- Кнопки управления -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Сохранить" Clicked="OnSaveClicked" />
+            <Button Text="Отмена" Clicked="OnCancelClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

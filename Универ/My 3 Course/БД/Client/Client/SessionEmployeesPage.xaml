@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.SessionEmployeesPage"
+             Title="Связи Сессия-Сотрудник">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <SearchBar Placeholder="Введите ID сеанса, ID сотрудника или имя для поиска"
+                   TextChanged="OnSearchBarTextChanged"/>
+        <Grid Padding="10" ColumnDefinitions="1*, 2*, 3*, 3*"
+              BackgroundColor="LightGray">
+            <Label Text="Сеанс ID" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
+            <Label Text="Сотрудник ID" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="1"/>
+            <Label Text="Информация о сотруднике" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="2"/>
+        </Grid>
+        
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+        
+        <CollectionView x:Name="SessionEmployeeList"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSessionEmployeeSelected"
+                        Margin="0,5,0,5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid Padding="10" ColumnDefinitions="1*, 2*, 3*, 3*">
+                            <Label Grid.Column="0" Text="{Binding SessionId}" />
+                            <Label Grid.Column="1" Text="{Binding EmployeeId}" />
+                            <Label Grid.Column="2" Text="{Binding EmployeeInfo}" />
+                        </Grid>
+                        <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Добавить связь" Clicked="OnAddSessionEmployeeClicked" />
+            <Button Text="Удалить связь" Clicked="OnDeleteSessionEmployeeClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

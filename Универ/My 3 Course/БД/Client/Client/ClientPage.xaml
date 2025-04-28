@@ -1,0 +1,45 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CinemaClientService.ViewModels"
+             x:Class="CinemaClientService.Pages.ClientsPage"
+             Title="Клиенты">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <SearchBar x:Name="SearchBar"
+                   Placeholder="Поиск по ФИО"
+                   TextChanged="OnSearchTextChanged" />
+
+        <!-- Заголовки -->
+        <Grid ColumnDefinitions="2*, 2*, 3*"
+              BackgroundColor="LightGray"
+              Padding="10">
+            <Label Text="ФИО" FontAttributes="Bold" Grid.Column="0"/>
+            <Label Text="Email" FontAttributes="Bold" Grid.Column="1"/>
+            <Label Text="История заказов" FontAttributes="Bold" Grid.Column="2"/>
+        </Grid>
+
+        <!-- Список клиентов -->
+        <CollectionView x:Name="ClientsCollection"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:ClientView">
+                    <Grid ColumnDefinitions="2*, 2*, 3*"
+                          Padding="10">
+                        <Label Text="{Binding FullName}" Grid.Column="0"/>
+                        <Label Text="{Binding Email}" Grid.Column="1"/>
+                        <Label Text="{Binding OrderHistory}" Grid.Column="2"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Кнопки управления -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Добавить" Clicked="OnAddClicked" />
+            <Button Text="Редактировать" Clicked="OnEditClicked" />
+            <Button Text="Удалить" Clicked="OnDeleteClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,20 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.EmployeeFormPage"
+             Title="Сотрудник">
+    
+    <VerticalStackLayout Padding="10">
+        <Entry x:Name="FullNameEntry" Placeholder="ФИО" />
+        <Entry x:Name="PhoneEntry" Placeholder="Телефон" Keyboard="Telephone" />
+        <Entry x:Name="PositionEntry" Placeholder="Должность" />
+
+        <!-- Новые поля -->
+        <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" />
+        <Entry x:Name="AddressEntry" Placeholder="Адрес" />
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button Text="Сохранить" Clicked="OnSaveClicked" />
+            <Button Text="Отмена" Clicked="OnCancelClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

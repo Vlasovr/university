@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.SessionEmployeeFormPage"
+             Title="{Binding PageTitle}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <!-- Отображение SessionId как Label -->
+            <Label Text="Session ID:" FontAttributes="Bold" />
+            <Label x:Name="SessionIdLabel" Text="{Binding SelectedSession.SessionId}" />
+
+            <!-- Выбор сессии (отображается только при добавлении) -->
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center" IsVisible="{Binding IsAdding}">
+                <Button x:Name="SelectSessionButton" Text="Выберите сессию" Clicked="OnSelectSessionClicked" />
+                <Label x:Name="SelectedSessionLabel" Text="Не выбрано" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Отображение SessionInfo как Label (только для редактирования) -->
+            <Label Text="Session Info:" FontAttributes="Bold" IsVisible="{Binding IsEditing}" />
+            <Label x:Name="SelectedSessionInfoLabel" Text="{Binding SelectedSession.SessionInfo}" IsVisible="{Binding IsEditing}" />
+
+            <!-- Отображение MovieId как Label -->
+            <Label Text="Employee ID:" FontAttributes="Bold" />
+            <Label x:Name="EmployeeIdLabel" Text="{Binding SelectedEmployee.EmployeeId}" />
+
+            <!-- Выбор сотрудника -->
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Button x:Name="SelectEmployeeButton" Text="Выберите сотрудника" Clicked="OnSelectEmployeeClicked" />
+                <Label x:Name="SelectedEmployeeLabel" Text="Не выбрано" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Кнопки управления -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                <Button Text="Сохранить" Clicked="OnSaveClicked" />
+                <Button Text="Отмена" Clicked="OnCancelClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

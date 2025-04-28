@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.SessionsPage"
+             Title="Сеансы">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <!-- Поисковая строка -->
+        <SearchBar Placeholder="Введите ID зала, формат или доступные места для поиска"
+                   TextChanged="OnSearchBarTextChanged"/>
+
+        <!-- Заголовки таблицы с разделительной линией снизу -->
+        <Grid Padding="10" ColumnDefinitions="1*, 2*, 2*, 2*, 2*, 2*"
+              BackgroundColor="LightGray">
+            <Label Text="ID" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
+            <Label Text="Зал ID" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="1"/>
+            <Label Text="Формат" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="2"/>
+            <Label Text="Доступные места" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="3"/>
+            <Label Text="Время начала" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="4"/>
+            <Label Text="Время окончания" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="5"/>
+        </Grid>
+
+        <!-- Индикатор загрузки -->
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+
+        <!-- Таблица сеансов с пользовательскими разделительными линиями -->
+        <CollectionView x:Name="SessionList"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSessionSelected"
+                        Margin="0,5,0,5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid Padding="10" ColumnDefinitions="1*, 2*, 2*, 2*, 2*, 2*">
+                            <Label Grid.Column="0" Text="{Binding SessionId}" />
+                            <Label Grid.Column="1" Text="{Binding HallId}" />
+                            <Label Grid.Column="2" Text="{Binding Format}" />
+                            <Label Grid.Column="3" Text="{Binding AvailableSeats}" />
+                            <Label Grid.Column="4" Text="{Binding StartTime, StringFormat='{0:dd.MM.yyyy HH:mm}'}" />
+                            <Label Grid.Column="5" Text="{Binding EndTime, StringFormat='{0:dd.MM.yyyy HH:mm}'}" />
+                        </Grid>
+                        <!-- Разделительная линия между строками -->
+                        <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Кнопки управления сеансами -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Добавить" Clicked="OnAddSessionClicked" />
+            <Button Text="Редактировать" Clicked="OnEditSessionClicked" />
+            <Button Text="Удалить" Clicked="OnDeleteSessionClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

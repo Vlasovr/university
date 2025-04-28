@@ -1,0 +1,49 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.HallsPage"
+             Title="Залы">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <!-- Поисковая строка -->
+        <SearchBar Placeholder="Введите ID или график уборки для поиска"
+                   TextChanged="OnSearchBarTextChanged"/>
+
+        <!-- Заголовки таблицы с разделительной линией снизу -->
+        <Grid Padding="10" ColumnDefinitions="2*, 2*, 2*, 4*"
+              BackgroundColor="LightGray">
+            <Label Text="ID" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
+            <Label Text="Рейтинг" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="1"/>
+            <Label Text="Вместимость" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="2"/>
+            <Label Text="График уборки" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="3"/>
+        </Grid>
+
+        <!-- Таблица залов с пользовательскими разделительными линиями -->
+        <CollectionView x:Name="HallList"
+                        SelectionMode="Single"
+                        SelectionChanged="OnHallSelected"
+                        Margin="0,5,0,5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid Padding="10" ColumnDefinitions="2*, 2*, 2*, 4*">
+                            <Label Grid.Column="0" Text="{Binding HallId}" />
+                            <Label Grid.Column="1" Text="{Binding Rating}" />
+                            <Label Grid.Column="2" Text="{Binding Capacity}" />
+                            <Label Grid.Column="3" Text="{Binding CleaningSchedule}" />
+                        </Grid>
+                        <!-- Разделительная линия между строками -->
+                        <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Кнопки управления залами -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Добавить" Clicked="OnAddHallClicked" />
+            <Button Text="Редактировать" Clicked="OnEditHallClicked" />
+            <Button Text="Удалить" Clicked="OnDeleteHallClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

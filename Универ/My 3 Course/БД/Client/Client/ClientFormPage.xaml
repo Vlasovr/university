@@ -1,0 +1,17 @@
+<!-- ClientFormPage.xaml -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.Pages.ClientFormPage"
+             Title="Клиент">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <Entry x:Name="FullNameEntry" Placeholder="ФИО" />
+        <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" />
+        <Editor x:Name="OrderHistoryEditor" Placeholder="История заказов" AutoSize="TextChanges" />
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Сохранить" Clicked="OnSaveClicked"/>
+            <Button Text="Отмена" Clicked="OnCancelClicked"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

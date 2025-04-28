@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.SessionMovieFormPage"
+             Title="{Binding PageTitle}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <!-- Скрытое поле для SessionId и MovieId при редактировании -->
+            <Entry x:Name="SessionIdEntry" Placeholder="Session ID" IsVisible="False" />
+            <Entry x:Name="MovieIdEntry" Placeholder="Movie ID" IsVisible="False" />
+
+            <!-- Выбор сессии -->
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Button x:Name="SelectSessionButton" Text="Выберите сессию" Clicked="OnSelectSessionClicked" />
+                <Label x:Name="SelectedSessionLabel" Text="Не выбрано" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Выбор фильма -->
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Button x:Name="SelectMovieButton" Text="Выберите фильм" Clicked="OnSelectMovieClicked" />
+                <Label x:Name="SelectedMovieLabel" Text="Не выбрано" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Кнопки управления -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                <Button Text="Сохранить" Clicked="OnSaveClicked" />
+                <Button Text="Отмена" Clicked="OnCancelClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

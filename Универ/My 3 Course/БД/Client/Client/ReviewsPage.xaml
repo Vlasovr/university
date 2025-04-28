@@ -1,0 +1,54 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.ReviewsPage"
+             Title="Отзывы">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <!-- Поисковая строка -->
+        <SearchBar Placeholder="Введите название фильма или клиента для поиска"
+                   TextChanged="OnSearchBarTextChanged"/>
+
+        <!-- Заголовки таблицы с разделительной линией снизу -->
+        <Grid Padding="10" ColumnDefinitions="1*, 3*, 2*, 2*, 3*"
+              BackgroundColor="LightGray">
+            <Label Text="ID" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="0"/>
+            <Label Text="Фильм" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="1"/>
+            <Label Text="Клиент" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="2"/>
+            <Label Text="Рейтинг" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="3"/>
+            <Label Text="Комментарий" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Start" Grid.Column="4"/>
+        </Grid>
+
+        <!-- Индикатор загрузки -->
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+
+        <!-- Таблица отзывов с пользовательскими разделительными линиями -->
+        <CollectionView x:Name="ReviewList"
+                        SelectionMode="Single"
+                        SelectionChanged="OnReviewSelected"
+                        Margin="0,5,0,5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid Padding="10" ColumnDefinitions="1*, 3*, 2*, 2*, 3*">
+                            <Label Grid.Column="0" Text="{Binding ReviewId}" />
+                            <Label Grid.Column="1" Text="{Binding MovieName}" />
+                            <Label Grid.Column="2" Text="{Binding ClientName}" />
+                            <Label Grid.Column="3" Text="{Binding Rating}" />
+                            <Label Grid.Column="4" Text="{Binding Comment}" LineBreakMode="TailTruncation" />
+                        </Grid>
+                        <!-- Разделительная линия между строками -->
+                        <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Кнопки управления отзывами -->
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Text="Добавить" Clicked="OnAddReviewClicked" />
+            <Button Text="Редактировать" Clicked="OnEditReviewClicked" />
+            <Button Text="Удалить" Clicked="OnDeleteReviewClicked" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CinemaClientService.TicketFormPage"
+             Title="{Binding PageTitle}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <!-- Скрытое поле для ID -->
+            <Entry x:Name="TicketIdEntry" Placeholder="ID" IsVisible="False" />
+
+            <!-- Выбор клиента -->
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Button x:Name="SelectClientButton" Text="Выберите клиента" Clicked="OnSelectClientClicked" />
+                <Label x:Name="SelectedClientLabel" Text="Не выбрано" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Выбор места -->
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Button x:Name="SelectSeatButton" Text="Выберите место" Clicked="OnSelectSeatClicked" />
+                <Label x:Name="SelectedSeatLabel" Text="Не выбрано" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Выбор сессии -->
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Button x:Name="SelectSessionButton" Text="Выберите сессию" Clicked="OnSelectSessionClicked" />
+                <Label x:Name="SelectedSessionLabel" Text="Не выбрано" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <!-- Ввод цены -->
+            <Label Text="Цена:" />
+            <Entry x:Name="PriceEntry" Placeholder="Введите цену" Keyboard="Numeric" />
+
+            <!-- Ввод категории -->
+            <Label Text="Категория:" />
+            <Entry x:Name="CategoryEntry" Placeholder="Введите категорию" />
+
+            <!-- Ввод времени покупки -->
+            <Label Text="Время покупки:" />
+            <DatePicker x:Name="PurchaseDatePicker" />
+            <TimePicker x:Name="PurchaseTimePicker" />
+
+            <!-- Кнопки управления -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                <Button Text="Сохранить" Clicked="OnSaveClicked" />
+                <Button Text="Отмена" Clicked="OnCancelClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
