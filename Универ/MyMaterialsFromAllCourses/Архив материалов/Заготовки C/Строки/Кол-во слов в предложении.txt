@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <string.h>
+
+void InputString(char *str);
+void FormatString(char *str);
+void main()
+{
+    const int size = 255; 
+    char str[size];     
+    InputString(str);
+    FormatString(str);
+}
+void InputString(char *str)
+{
+    printf("Vvod stroki: ");
+    gets(str);
+}
+void FormatString(char *str)
+{
+    int numWords = 0;
+    int startWord = 0;
+    int endWord = 0;
+    int i;
+    for (i = 0; i < strlen(str) - 1; i++)    // по всем символам строки от 0 до strlen(str) - 1 (последнего)
+    {
+        if ((str[i] == ' ') && (str[i+1] != ' '))  // если найден пробел, и следующий за ним символ не является пробелом
+        {
+            if (numWords == 1)  //если количество слов равно 1
+            {
+                if (str[i] == ' ') // и если найден пробел
+            {
+            endWord = i-1; // концу слова присваивается значение (номер пробела) - 1
+            }
+        }
+        numWords = numWords + 1; // увеличиваем на 1 количество слов
+    }
+
+    if (numWords == 1 && startWord == 0)
+    {    
+        startWord = i+1;
+    }
+}
+if (str[0] != ' ') // если строка начинается с пробела (первый символ - пробел)
+{
+    numWords = numWords + 1; // увеличиваем на 1 количество слов
+    if (numWords == 2) //если слов 2
+    {
+        endWord = strlen(str) - 1;  // конец последнего слова = длина строки -1
+    }
+}
+
+int halfWordLen = startWord + (int)((endWord-startWord)/2); // вводим и вычисляем переменную = середине второго слова (того, которое будем переворачивать)
+int k, j;
+for (j = startWord, k = 0; j <= halfWordLen; j++, k++) //выполняем цикл смены мест букв относилельно оси (середины второго слова)
+{
+    char buf;
+    buf = str[j];
+    str[j] = str[endWord-k];
+    str[endWord-k] = buf;
+}
+printf("Vsego %d slov v stroke\n" , numWords ); // выводим результаты
+puts(str);
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="resume.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/940e71eda5.js" crossorigin="anonymous"></script>
+    <script defer>
+        const modeChange = () => {
+            let nightMode = document.querySelector('#nightMode');
+    
+            if (nightMode.innerHTML.match('moon')) {
+                document.documentElement.style.setProperty('--main-bg-color', '#222222');
+                document.documentElement.style.setProperty('--main-container-color', '#333333');
+                document.documentElement.style.setProperty('--main-header-color', '#f9f9f9');
+                document.documentElement.style.setProperty('--main-substitute-color', '#f9f9f9cc');
+                document.documentElement.style.setProperty('--main-shadow-color', '#666666');
+                nightMode.innerHTML = nightMode.innerHTML.replace('moon', 'sun');
+            } else {
+                document.documentElement.style.setProperty('--main-bg-color', '#e3e3e3');
+                document.documentElement.style.setProperty('--main-container-color', '#f9f9f9');
+                document.documentElement.style.setProperty('--main-header-color', '#333333');
+                document.documentElement.style.setProperty('--main-substitute-color', '#333333cc');
+                document.documentElement.style.setProperty('--main-shadow-color', '#aaaaaa');
+                nightMode.innerHTML = nightMode.innerHTML.replace('sun', 'moon');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="resume-header">
+            <span class="header-text"><b>RESUME</b></span>
+            <span class="developer-name">YOUR NAME</span>
+            <span class="contact-info">
+                <div class="linkedin">206.319.2955</div>
+                <div class="contact-email">youremail@uw.edu</div>
+                <div class="portfolio-email">yourportfolio.com</div>
+            </span>
+        </div>
+        <div class="paragraph-container">
+            <div class="paragraph-label">
+                <span class="header-text"><b>EXPERIENCE</b></span>
+                <span>PROFESSIONAL</span>
+            </div>
+            <div class="units-container">
+                <div class="unit-info">
+                    <div class="unit-name-and-date">
+                        <div class="unit-name header-text"><b>COMPANY NAME</b></div>
+                        <div class="date">07/2020 - 09/2020</div>
+                    </div>
+                    <div class="position">POSITION</div>
+                    <div class="unit-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi accumsan, curabitur scelerisque eget imperdiet donec porttitor felis urna. Pharetra molestie mi amet arcu urna.
+                    </div>
+                </div>
+                <div class="unit-info">
+                    <div class="unit-name-and-date">
+                        <div class="unit-name header-text"><b>COMPANY NAME</b></div>
+                        <div class="date">07/2020 - 09/2020</div>
+                    </div>
+                    <div class="position">POSITION</div>
+                    <div class="unit-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi accumsan, curabitur scelerisque eget imperdiet donec porttitor felis urna. Pharetra molestie mi amet arcu urna.
+                    </div>
+                </div>
+                <div class="unit-info">
+                    <div class="unit-name-and-date">
+                        <div class="unit-name header-text"><b>COMPANY NAME</b></div>
+                        <div class="date">07/2020 - 09/2020</div>
+                    </div>
+                    <div class="position">POSITION</div>
+                    <div class="unit-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi accumsan, curabitur scelerisque eget imperdiet donec porttitor felis urna. Pharetra molestie mi amet arcu urna.
+                    </div>
+                </div>
+                <div class="unit-info">
+                    <div class="unit-name-and-date">
+                        <div class="unit-name header-text"><b>COMPANY NAME</b></div>
+                        <div class="date">07/2020 - 09/2020</div>
+                    </div>
+                    <div class="position">POSITION</div>
+                    <div class="unit-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi accumsan, curabitur scelerisque eget imperdiet donec porttitor felis urna. Pharetra molestie mi amet arcu urna.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="paragraph-container">
+            <div class="paragraph-label">
+                <span class="header-text"><b>EXPERIENCE</b></span>
+                <span>ACADEMIC</span>
+            </div>
+            <div class="units-container">
+                <div class="unit-info">
+                    <div class="unit-name-and-date">
+                        <div class="unit-name header-text"><b>COLLEGE/INSTITUTION NAME</b></div>
+                        <div class="date">07/2020 - 09/2020</div>
+                    </div>
+                    <div class="position">POSITION</div>
+                    <div class="unit-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi accumsan, curabitur scelerisque eget imperdiet donec porttitor felis urna. Pharetra molestie mi amet arcu urna.
+                    </div>
+                </div>
+                <div class="unit-info">
+                    <div class="unit-name-and-date">
+                        <div class="unit-name header-text"><b>COLLEGE/INSTITUTION NAME</b></div>
+                        <div class="date">07/2020 - 09/2020</div>
+                    </div>
+                    <div class="position">POSITION</div>
+                    <div class="unit-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi accumsan, curabitur scelerisque eget imperdiet donec porttitor felis urna. Pharetra molestie mi amet arcu urna.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="paragraph-container">
+            <div class="paragraph-label">
+                <span class="header-text">
+                    <b>AWARDS</b>
+                </span>
+            </div>
+            <div class="units-container">
+                <div class="unit-info">
+                    <div class="unit-name-and-date">
+                        <div class="unit-name header-text">
+                            <b>AWARD NAME</b>
+                        </div>
+                        <div class="date">07/2020 - 10/2020</div>
+                    </div>
+                    <div class="unit-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi accumsan, curabitur scelerisque eget imperdiet donec porttitor felis urna. Pharetra molestie mi amet arcu urna. 
+                    </div>
+                </div>
+                <div class="unit-info">
+                    <div class="unit-name-and-date">
+                        <div class="unit-name header-text">
+                            <b>AWARD NAME</b>
+                        </div>
+                        <div class="date">07/2020 - 10/2020</div>
+                    </div>
+                    <div class="unit-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi accumsan, curabitur scelerisque eget imperdiet donec porttitor felis urna. Pharetra molestie mi amet arcu urna. 
+                    </div>
+                </div>
+                <div class="unit-info">
+                    <div class="unit-name-and-date">
+                        <div class="unit-name header-text">
+                            <b>AWARD NAME</b>
+                        </div>
+                        <div class="date">07/2020 - 10/2020</div>
+                    </div>
+                    <div class="unit-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi accumsan, curabitur scelerisque eget imperdiet donec porttitor felis urna. Pharetra molestie mi amet arcu urna. 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="paragraph-container">
+            <div class="paragraph-label">
+                <span class="header-text">
+                    <b>EDUCATION</b>
+                </span>
+            </div>
+            <div class="units-container">
+                <div class="unit-info">
+                    <div class="unit-name-and-date">
+                        <div class="unit-name header-text">
+                            <b>UNIVERSITY NAME, MAJOR</b>
+                        </div>
+                        <div class="date">2017-2021</div>
+                    </div>
+                    <div class="unit-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi accumsan, curabitur scelerisque eget imperdiet donec porttitor felis urna. Pharetra molestie mi amet arcu urna. 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="nightMode" class="night-mode-button" onclick="modeChange()">
+        <i class="fas fa-moon"></i>
+    </button>
+</body>
+</html>

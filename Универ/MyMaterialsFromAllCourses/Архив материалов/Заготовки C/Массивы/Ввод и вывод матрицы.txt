@@ -1,0 +1,17 @@
+//Row - размерность
+
+
+int i,Arr[Row];
+//Ввод
+for(i=0;i<Row;i++)
+{
+    printf("A[%d]=",i);
+    scanf("%d",&Arr[i]);
+}
+
+//Вывод
+for(i=0;i<Row;i++)
+{
+    printf("A[%d]=%d",i,Arr[i]);
+    printf("\n");
+}

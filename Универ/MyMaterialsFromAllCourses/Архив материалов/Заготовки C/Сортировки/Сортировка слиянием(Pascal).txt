@@ -1,0 +1,19 @@
+На вход процедуры сортировки поступает неупорядоченный кусок массива 
+А с номерами элементов от b до e, на выходе - тот же кусок, 
+но упорядоченный. Массив С - вспомогательный.
+
+Procedure Sort2(Var A, C : Array1; b, e : integer);
+Var
+  i, d : integer;
+Begin
+  if b<e
+    then
+      begin
+        d := (b+e) div 2;
+        Sort2(A, C, b, d);
+        Sort2(A, C, d+1, e);
+        Sort(A, C, b, d, e);
+        for i := b to e do
+          A[i] := C[i]
+      end;
+End;

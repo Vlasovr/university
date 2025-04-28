@@ -1,0 +1,24 @@
+В текстовом файле записаны числа, каждое число начинается с новой 
+строки. Необходимо считать текстовый файл в массив.
+
+#include <stdio.h>
+#include <conio.h>
+void main(void)
+{
+int m[10][10],i=0,j=0;
+FILE *f;
+
+clrscr();
+f=fopen("C:\\1.txt","r");
+
+while(!feof(f))
+{
+  fscanf(f,"%d\n",&m[i][j]);
+  printf("%d\n",m[i][j]);
+  i++;
+  j++;
+}
+getch();
+fclose(f);
+
+}

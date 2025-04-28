@@ -1,0 +1,53 @@
+// Пирамидальная сортировка массива
+#include <stdio.h>
+#include <stdlib.h>
+#define ArrSize 9
+ 
+int main()
+{
+    int Arr[ArrSize] = {3,-1,0,1,2,8,3,2,3};
+    int i, j;           //Счетчики
+    int min;           // Минимальное значение текущей итерации
+    int ind_min;       // Индекс минимального элемента
+    int tmp;           // Временная переменная
+ 
+    // Вывод исходного массива
+    printf("Massiv do sortirovki: ");
+    for(i=0; i<ArrSize; i++)
+    {
+         printf("%i ",Arr[i]);
+    }
+    printf("\n");
+ 
+    for(j=0; j<ArrSize-1; j++)
+    {
+        min=Arr[j];
+        ind_min = j;
+        // Обход массива: поиск минимального элемента
+        for(i=j+1; i<ArrSize; i++)
+        {
+            // Если выбранный элемент массива меньше текущего минимального
+            // то запомнить это значение и его индекс
+            if(min>Arr[i])
+            {
+                min=Arr[i];
+                ind_min = i;
+            }            
+        }
+        if (j!=ind_min)
+        {
+            // Поменять местами минимальный и первый элемент выборки
+            tmp = Arr[j];
+            Arr[j]=min;
+            Arr[ind_min]=tmp;
+        }
+    }
+ 
+    // Вывод результирующего массива
+    printf("Massiv posle sortirovki: ");
+    for(i=0; i<ArrSize; i++)
+    {
+         printf("%i ",Arr[i]);
+    }
+    getch();
+}

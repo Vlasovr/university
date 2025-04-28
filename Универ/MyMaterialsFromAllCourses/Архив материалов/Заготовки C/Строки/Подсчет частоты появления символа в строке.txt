@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+ 
+int main()
+{
+    // Исходная строка
+    char Str[]="Hello world. Privet, medved.";
+    int SymbCount=0;
+    int i;                           // Счётчик
+    char FindSymb='e';               // Искомый символ
+ 
+    // Подсчет повторов искомого символа
+    for(i=0; i<sizeof(Str); i++)
+    {
+	if (Str[i]==FindSymb) SymbCount++;
+    }
+ 
+    // Вывести результат			
+    printf("Kolichestvo povtorov=%i", SymbCount);
+    getchar();
+    getch();
+}

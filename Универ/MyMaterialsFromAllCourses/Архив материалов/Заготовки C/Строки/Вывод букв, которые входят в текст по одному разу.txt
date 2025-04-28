@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int Comp(const void* a, const void* b)
+{
+    return *(char*)a-*(char*)b;
+}
+ 
+int main()
+{
+    char text[]="fghbnggnawqxw", *p=text;
+    qsort(text, sizeof(text)-1, sizeof(*text), Comp);
+    for(; *p; ++p)
+    {
+        if(*p==*(p+1))
+        {
+          while(*p==*(p+1))++p;
+        }
+        else
+        {
+            printf("%c", *p);
+        }
+    }
+    getch();
+}

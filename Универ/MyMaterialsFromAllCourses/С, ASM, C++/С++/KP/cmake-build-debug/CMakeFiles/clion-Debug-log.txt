@@ -1,0 +1,15 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S "/Users/romanvlasov/Desktop/УНИК/С, ASM, C++/С++/KP" -B "/Users/romanvlasov/Desktop/УНИК/С, ASM, C++/С++/KP/cmake-build-debug"
+CMake Warning at /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/Platform/Darwin-Initialize.cmake:303 (message):
+  Ignoring CMAKE_OSX_SYSROOT value:
+
+   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk
+
+  because the directory does not exist.
+Call Stack (most recent call first):
+  /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake:21 (include)
+  CMakeLists.txt:2 (project)
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/romanvlasov/Desktop/УНИК/С, ASM, C++/С++/KP/cmake-build-debug

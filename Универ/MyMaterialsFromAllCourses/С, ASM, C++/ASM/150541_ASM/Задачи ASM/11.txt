@@ -1,0 +1,36 @@
+;Пример 11
+.model	small
+.stack	100h
+.data
+n	equ	10
+stroka	db	'ac3fg6ndu8'
+.code
+start:
+	mov	ax,@data
+	mov	ds,ax
+	xor	ax,ax
+	xor     dx,dx   ;в dx будет сумма цифр
+	xor     bx,bx   ;в bx - их количество
+	mov	cx,n
+	lea	bx,stroka	;адрес stroka в bx
+m1:	mov	al,[bx]	;очередной символ из stroka в al
+	cmp	al,30h	;проверить, что код символа не меньше '0'
+	jb	next	;если меньше, то не обрабатывать и на следующий символ
+	cmp	al,39h	;проверить, что код символа не больше '9'
+	ja	next	;если больше, то не обрабатывать и на следующий символ
+	sub     al,30h  ;символ цифры преобразуем в цифру
+	add     dl,al   ;добавляем к сумме
+	inc     bx
+
+next:
+	inc	bx	;адресовать следующий символ
+	dec	cx	;уменьшить значение счетчика в cx
+	jnz	m1	;если cx не 0, то переход на m1
+exit:
+	mov	ax,4c00h
+	int	21h	;возврат управления операционной системе
+end	start
+
+
+
+

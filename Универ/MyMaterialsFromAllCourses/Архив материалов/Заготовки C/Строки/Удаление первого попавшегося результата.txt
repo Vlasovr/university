@@ -1,0 +1,31 @@
+функция ищет в строке поисковый контекст, например “abcd”, и 
+удаляет его первое вхождение.
+
+#include <stdio.h>
+#include <string.h>
+//Удалить из строки первое вхождение поискового контекста. Если он не найден, то функция вернет исходную строку.
+ 
+void fun(char *str, char *fnd, char *buf){
+    char *p=strstr(str, fnd);//Ищем поисковый контекст (fnd) в строке
+    //Если fnd не найден, то копируем всю строку и завершаем функцию.
+    if(p==NULL){
+        strcpy(buf, str); return;
+    }//end if
+    char *fnd1=fnd;
+    while(str<p){
+        *buf=*str; buf++; str++; *buf='\0';
+    }//Скопировали строку до встречи fnd.
+    while(*fnd1){
+        str++; fnd1++;
+    }//Пропустили fnd.
+    strcpy(buf, str);//Скопировали все, что идет после fnd.
+    return;
+}//end fun
+ 
+int main(){
+    char a[]="qwerty qabcde alarmabcd";
+    char b[]="abcd";
+    char c[100];
+    fun(a,b,c);
+    printf("%s\n%s\n",a,c);
+}//end main

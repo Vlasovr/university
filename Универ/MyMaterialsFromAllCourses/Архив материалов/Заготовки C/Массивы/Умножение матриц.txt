@@ -1,0 +1,14 @@
+double umnozhenie()
+{
+ 
+    Matrix5=new double*[N];      
+    for (int i=0; i<N; i++)
+    {                    
+                Matrix5[i]=new double[N];
+            for (int j=0; j<N; j++)
+        {
+                        Matrix5[i][j]=0;
+                        for(int k=0;k<N;k++)
+                Matrix5[i][j] +=Matrix[i][k]*Matrix4[k][j];
+                }
+        }

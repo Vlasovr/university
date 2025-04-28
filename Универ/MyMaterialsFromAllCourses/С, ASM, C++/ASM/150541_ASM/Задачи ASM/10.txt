@@ -1,0 +1,42 @@
+  ;ПРИМЕР 10
+  ;Для матрицы, определенной в сегменте данных, вычислить   ;суммы элементов столбцов
+  .model small
+  .stack 100h
+  .data
+  n dw 4  ;	размеры матрицы:число столбцов
+  m dw 5    ;	число строк
+  x dw 1,2,3,4  ;матрица
+    dw 5,6,7,8  
+    dw 9,1,2,3  
+    dw 4,3,2,1
+    dw 0,2,7,9
+  lnstr dw 8    ;длина строки матрицы
+  lnel  dw 2    ;длина элемента матрицы
+  s  dw 4dup(?) ;массив для сумм
+
+  .code
+  begin:
+  	mov ax,@data  ;позиционируем регистр ds на сегмент                       ;данных
+	mov ds,ax
+	mov cx,n      ;
+	xor bx,bx     ;
+  l2:	
+	push cx
+	xor si,si
+	xor ax,ax
+	mov cx,m
+  l1:	
+	add ax,x[bx+si]
+	add si,lnstr
+	loop l1
+
+	mov s[bx],ax	;
+	add bx,lnel
+	pop cx		;
+	loop l2
+	
+
+	mov ax,4c00h
+	int 21h
+
+  end begin

@@ -1,0 +1,35 @@
+Функция подсчитывает сколько раз встретилась подстрока fnd 
+в строке str.
+
+#include <stdio.h>
+#include <string.h>
+ 
+int find(char *str, char *fnd, int num){
+    char *p=strstr(str,fnd);//Ищем fnd в str
+    //Если не найдено, то возращаем количество совпадений
+    if(p==NULL){
+        return num;
+    }//end if
+    num++;
+    char *fnd1=fnd; char *str1=str;
+    //Сдвигаем указатель p на длину fnd вправо
+    while(*fnd1){
+        p++; fnd1++;
+    }//end while
+    //Новый указатель str1 будет указывать на
+    //место, где кончается первый найденный fnd
+    while(str1<p){
+        str1++;
+    }//end while
+    //Рекурсивно вызываем функцию
+    //строка str1, после первого вызова find
+    //выглядит так - " abc abcght jkabc"
+    //а после второго так - " abcght jkabc" и т.д.
+    find(str1, fnd, num);
+}//end find
+ 
+int main(){
+    char a[]="qweabc abc abcght jkabc";
+    printf("The number of matches = %d\n",find(a, "abc", 0));
+    //Здесь третий параметр find - 0, т.е. функция будет начинать считать с нуля
+}//end main

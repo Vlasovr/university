@@ -1,0 +1,7 @@
+# ninja log v5
+895	968	1683361757152929279	Labaratornaya2	10477544edc0ae88
+7	743	1682371689254444428	CMakeFiles/Labaratornaya2.dir/PassengerTransport.cpp.o	bee343a328f4d988
+8	749	1682371689261398417	CMakeFiles/Labaratornaya2.dir/Airplane.cpp.o	e1193f9bbd43e839
+8	729	1682371689236360873	CMakeFiles/Labaratornaya2.dir/Train.cpp.o	d447661aa4b369b8
+36	895	1683361757076364481	CMakeFiles/Labaratornaya2.dir/main.cpp.o	61342973a7e39405
+36	888	1683361757067530730	CMakeFiles/Labaratornaya2.dir/Car.cpp.o	d9fcca10305b6498

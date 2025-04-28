@@ -1,0 +1,18 @@
+void bubbleSort(T a[], long size) 
+{
+  long i, j;
+  T x;
+ 
+  for( i=0; i < size; i++) 
+  {            
+    for( j = size-1; j > i; j-- )
+    {
+      if ( a[j-1] > a[j] ) 
+      {
+        x=a[j-1]; 
+        a[j-1]=a[j]; 
+        a[j]=x;
+      }
+    }
+  }
+}

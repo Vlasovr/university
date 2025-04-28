@@ -1,0 +1,37 @@
+
+
+
+;Пример 9
+;Переписать символы строки, определенной в сегменте данных, 
+;в другую строку в обратном порядке
+
+
+.model	small
+.stack	100h
+.data
+n	equ	10
+stroka1	db	'acvfgrndup'
+stroka2 db 	10 dup(?)
+
+.code
+start:
+	mov	ax,@data
+	mov	ds,ax
+
+	xor	si,si
+	mov	cx,n		;в cx размер строки
+	lea	bx,stroka1	;адрес stroka1 в bx
+	mov	si,10		;si 
+	mov	di,si		;и di на начало второй строки
+	dec	si		;si на последний символ stroka1
+
+l:
+	mov	al,[bx+si]	;очередной символ из stroka1 в al
+	mov	[bx+di],al	;очередной символ из al в stroka1
+	dec 	si		;si на предыдущий символ stroka1 
+	inc	di		;di на следующий символ stroka2
+	loop 	l	
+exit:
+	mov	ax,4c00h
+	int	21h	;возврат управления операционной системе
+end	start

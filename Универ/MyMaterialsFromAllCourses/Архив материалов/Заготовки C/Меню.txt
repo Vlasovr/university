@@ -1,0 +1,17 @@
+int main()
+{
+   PtrRec spPark,spMarsh;
+   while (1) // выполняем в бесконечном цикле
+   {  
+      switch( ShowMenu() ) // показываем меню и проверяем что выбрал пользователь
+      {  
+         case 1: Print_List(spPark); break; // если 1, то смотрим список автобусов в парке
+         case 2: Print_List(spMarsh); break; // если 2, смотрим список автобусов на маршруте
+         case 3: Otpravl(spPark,spMarsh); break; // если 3, то отправляем автобусы на маршрут
+		 case 4: VPark(spMarsh,spPark); break; // если 4, то отправляем автобусы в парк
+         case 5: return 0; // если 4 то выходим из программы
+         default:  // если другая кнопка, ничего не делаем
+              break;
+      }
+   }
+}

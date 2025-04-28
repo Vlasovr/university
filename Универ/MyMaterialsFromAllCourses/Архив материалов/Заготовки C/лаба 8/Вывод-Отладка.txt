@@ -1,0 +1,13 @@
+﻿"лр 8 финалка(хз).exe" (Win32). Загружено "D:\lessons\лаба 8\Debug\лр 8 финалка(хз).exe". Символы загружены.
+"лр 8 финалка(хз).exe" (Win32). Загружено "C:\Windows\SysWOW64\ntdll.dll". 
+"лр 8 финалка(хз).exe" (Win32). Загружено "C:\Windows\SysWOW64\kernel32.dll". 
+"лр 8 финалка(хз).exe" (Win32). Загружено "C:\Windows\SysWOW64\KernelBase.dll". 
+"лр 8 финалка(хз).exe" (Win32). Загружено "C:\Windows\SysWOW64\vcruntime140d.dll". 
+"лр 8 финалка(хз).exe" (Win32). Загружено "C:\Windows\SysWOW64\ucrtbased.dll". 
+Поток 0x2be8 завершился с кодом 0 (0x0).
+"лр 8 финалка(хз).exe" (Win32). Загружено "C:\Windows\SysWOW64\kernel.appcore.dll". 
+"лр 8 финалка(хз).exe" (Win32). Загружено "C:\Windows\SysWOW64\msvcrt.dll". 
+"лр 8 финалка(хз).exe" (Win32). Загружено "C:\Windows\SysWOW64\rpcrt4.dll". 
+Поток 0x2894 завершился с кодом 0 (0x0).
+Поток 0x2884 завершился с кодом 0 (0x0).
+Программа "[11120] лр 8 финалка(хз).exe" завершилась с кодом 0 (0x0).

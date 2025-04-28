@@ -1,0 +1,32 @@
+#define SWAP(A,B) {A=A^B; B=A^B; A=A^B;}
+ 
+void m_sheker(int mas[], int n)
+{
+        int last = n-1, left = 1, right = n-1, j;
+ 
+        do
+        {
+                for(j = right; j >= left; j--)
+                {
+                        if(mas[j-1] > mas[j])
+                        {
+                                SWAP(mas[j-1], mas[j]);
+                                last = j;
+                        }
+                }
+ 
+                left = last + 1;
+ 
+                for(j = left; j <= right; j++)
+                {
+                        if(mas[j-1] > mas[j])
+                        {
+                                SWAP(mas[j-1], mas[j]);
+                                last = j;
+                        }
+                }
+ 
+                right = last-1;
+ 
+        } while(left < right);
+}

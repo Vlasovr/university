@@ -1,0 +1,26 @@
+В этой проге реализована функция, которая вытаскивает из символьной 
+строки числа, и печатает их на экране, каждое на новой строке.
+
+#include <stdio.h>
+#include <string.h>
+//Вытащить из строки числа
+ 
+void pull(char *str){
+    char buf[32]; buf[0]='\0';
+    int innum=0, i=0, j=0;
+    while(i<=strlen(str)){
+        if(str[i]>='0' && str[i]<='9'){
+            innum=1; buf[j]=str[i]; j++;
+        }//end if
+        else if(innum){
+            buf[j]='\0'; printf("%s\n", buf);
+            innum=0; j=0; buf[j]='\0';
+        }//end else if
+        i++;
+    }//end while
+}//end pull
+ 
+int main(){
+    char str1[]="ab123 c456d 78";
+    pull(str1);
+}//end main

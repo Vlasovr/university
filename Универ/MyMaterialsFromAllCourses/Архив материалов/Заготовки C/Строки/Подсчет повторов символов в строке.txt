@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+ 
+int main()
+{
+	unsigned char Slovar[255];     // Массив для подсчета повторов символов
+	unsigned char SymbCode;        // Код символа
+        // Исходная строка
+	char Str[]="Hello world. Privet, medved.";
+	int i;                           // Счётчик
+        // Очистить массив подсчета символов
+	for(i=0; i<sizeof(Slovar); i++)
+	{
+		Slovar[i]=0;
+	}
+        // Подсчет повторов символов    
+	for(i=0; i<sizeof(Str); i++)
+	{
+		SymbCode=Str[i];
+		Slovar[SymbCode]++;
+	}
+	// Вывести только те символы, которые встретились больше 1 разе
+	for(i=0; i<sizeof(Slovar); i++)
+	{
+		if (Slovar[i]>0)
+		{
+			printf("Symb=%c kolich=%i\n", (unsigned char)i, Slovar[i]);
+		}
+	}
+	getchar();
+	getch();
+}

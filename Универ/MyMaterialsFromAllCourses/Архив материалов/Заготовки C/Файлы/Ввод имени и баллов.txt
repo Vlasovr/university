@@ -1,0 +1,25 @@
+Давайте теперь рассмотрим программку работы с файломи в си 
+(ввод имени и балла):
+
+#include <conio.h>
+#include <stdio.h>
+
+int main()
+{
+     int bal;
+     char name[15];
+     FILE *file;
+
+     if ((file = fopen("1.txt","w")) == NULL)
+        printf("Файл невозможно открыть или создать\n");
+     else{
+        for(;;){
+           scanf ("%d%s", &bal, name);
+           if (bal == 0)
+              break;
+           fprintf(file,"%d %s\n", bal, name);
+        }
+     }
+     fclose(file);
+return 0;
+}

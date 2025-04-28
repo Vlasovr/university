@@ -1,0 +1,3 @@
+/Users/romanvlasov/Desktop/УНИК/С, ASM, C++/С++/KP/cmake-build-debug/CMakeFiles/KP.dir
+/Users/romanvlasov/Desktop/УНИК/С, ASM, C++/С++/KP/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/romanvlasov/Desktop/УНИК/С, ASM, C++/С++/KP/cmake-build-debug/CMakeFiles/rebuild_cache.dir

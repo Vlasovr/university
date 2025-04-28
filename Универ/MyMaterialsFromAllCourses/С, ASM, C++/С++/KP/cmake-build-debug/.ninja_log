@@ -1,0 +1,10 @@
+# ninja log v5
+18	1412	1686131423988728210	CMakeFiles/KP.dir/main.cpp.o	62df0b99b00eb89d
+22	930	1686131423505196425	CMakeFiles/KP.dir/Algorithms.cpp.o	6c2b2b3b33f68f24
+19	919	1686131423493954765	CMakeFiles/KP.dir/ListWithIterator.cpp.o	77683212d6a3de76
+32	1120	1686123471408359599	CMakeFiles/KP.dir/TemplateList.cpp.o	7d79463233aa891d
+0	54	1698514713552395075	build.ninja	d722c9d8cf22ac0f
+31	1209	1686123471500008092	CMakeFiles/KP.dir/PassengerTransport.cpp.o	cdface601ed69ecf
+21	1045	1686131423620520985	CMakeFiles/KP.dir/InterfaceWithList.cpp.o	c876e05820a8a129
+1413	1467	1686131424046571626	KP	fbbc7fa88ba3e595
+19	1046	1686131423620663352	CMakeFiles/KP.dir/InterfaceWithTemplateList.cpp.o	4b7576b6a2619e0
