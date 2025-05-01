@@ -727,6 +727,11 @@ void statCollector::collect(int x) {
     M2 = M2 + term1;
 }
 
+
+
+
+
+
 #include <Wire.h>
 // Подключение библиотеки для работы с интерфейсом I²C
 #include <LiquidCrystal_I2C.h>
@@ -823,7 +828,7 @@ unsigned int levenshtein(char *s1, char *s2) {
   // Возврат конечного расстояния между строками
   return column[s1len];
 }
-1ости расстояния для каждого паттерна
+
   unsigned int cost[DICT_MAX_ELEMNTS];
   // Вычисление расстояния Левенштейна для каждого паттерна словаря
   for (int j = 0; j < DICT_MAX_ELEMNTS; j++) {
