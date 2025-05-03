@@ -730,303 +730,305 @@ void statCollector::collect(int x) {
 
 
 
-
-
 #include <Wire.h>
 // Подключение библиотеки для работы с интерфейсом I²C
+
 #include <LiquidCrystal_I2C.h>
-// Подключение заголовочного файла uspeech.h (библиотека для распознавания речи)
+// Подключение библиотеки для управления LCD-дисплеем по шине I²C
+
 #include <uspeech.h>
+// Подключение библиотеки uspeech для распознавания речи
 
-// Определение номера пина для зелёного светодиода
-#define ledGreen 7
-// Определение номера пина для оранжевого светодиода
-#define ledOrange 6
-// Определение номера пина для белого светодиода
-#define ledWhite 5
+#include <string.h>
+// Подключение стандартной библиотеки C для работы со строками (strcmp, strlen)
 
-// Определение макроса MIN3 для вычисления минимального значения из трёх аргументов
-#define MIN3(a, b, c) ((a) < (b) ? ((a) < (c) ? (a) : (c)) : ((b) < (c) ? (b) : (c)))
+#define ledGreen   7
+// Определение номера пина 7 для зелёного светодиода
 
-// Создание объекта voice класса signal с подключением микрофона к аналоговому пину A0
+#define ledOrange  6
+// Определение номера пина 6 для оранжевого светодиода
+
+#define ledWhite   5
+// Определение номера пина 5 для белого светодиода
+
+#define buzzerPin  2
+// Определение номера пина 2 для подключения пьезодинамика (буззера)
+
+#define enablePin  A1
+// Определение номера аналогового пина A1 для переключателя (замыкание на GND = включено)
+
+#define MIN3(a,b,c) ((a)<(b)?((a)<(c)?(a):(c)):((b)<(c)?(b):(c)))
+// Макрос для вычисления минимального значения из трёх аргументов
+
 signal voice(A0);
+// Создание объекта voice класса signal, подключённого к аналоговому пину A0 для сбора аудиосэмплов
 
-// Создание объекта lcd класса LiquidCrystal_I2C для работы с LCD-дисплеем по I²C
-// Указание адреса дисплея (0x27) и размера дисплея (16 столбцов, 2 строки)
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+// Создание объекта lcd для работы с I²C LCD-дисплеем по адресу 0x27 (16×2 символа)
 
-// Определение константы для размера буфера, используемого для формирования слова из фонем
-const int BUFFER_MAX_PHONEMES = 32;
-// Объявление массива для накопления распознанных символов
-char inputString[BUFFER_MAX_PHONEMES];
-// Инициализация переменной индекса текущей позиции в буфере
-byte index = 0;
+const int  BUFFER_MAX_PHONEMES = 32;
+// Константа: максимальный размер буфера для накопления фонем
 
-// Определение количества элементов в словаре (паттернов) фонем
-const int DICT_MAX_ELEMNTS = 3;
-// Объявление словаря паттернов фонем для распознавания команд
+char       inputString[BUFFER_MAX_PHONEMES];
+// Массив для накопления входных фонем в виде строки
+
+byte       index = 0;
+// Текущий индекс в буфере inputString
+
+const int  DICT_MAX_ELEMNTS = 3;
+// Константа: количество элементов (паттернов) в словаре
+
 char dict[DICT_MAX_ELEMNTS][BUFFER_MAX_PHONEMES] = {
-  "vvvoeeeeeeeofff",   // Паттерн для команды green
-  "hhhhhvoovvvvf",     // Паттерн для команды orange
-  "booooooffffffff"    // Паттерн для команды white
+  "vvvoeeeeeeeofff",   // Паттерн для команды "green"
+  "hhhhhvoovvvvf",     // Паттерн для команды "orange"
+  "booooooffffffff"    // Паттерн для команды "white"
 };
+// Двумерный массив строк с паттернами фонем для распознавания трёх команд
 
-// Определение порогового значения для расстояния Левенштейна (для распознавания слова)
-int LOWEST_COST_MAX_THREASHOLD = 20;
+int    LOWEST_COST_MAX_THREASHHOLD = 20;
+// Пороговое значение для допустимой стоимости Левенштейна
 
-// Объявление глобальных переменных для контроля бездействия
-// Переменная lastCommandTime хранит время последнего изменения команды
-unsigned long lastCommandTime = 0;
-// Флаг idleDisplayed указывает, что состояние бездействия уже выведено на дисплей
-bool idleDisplayed = false;
+unsigned long lastCommandTime      = 0;
+// Время (в миллисекундах) последнего распознанного и обработанного слова
 
-// Функция для вычисления длины строки до пробела или конца строки
-int strLength(char const* s) {
-  // Инициализация счётчика
+bool         idleDisplayed        = false;
+// Флаг, указывающий, выводилось ли сообщение "ожидание" на дисплей
+
+bool         voiceEnabled         = false;
+// Флаг, указывающий, включено ли распознавание речи (состояние переключателя)
+
+/**
+ * Функция beep
+ * Простая «пищалка» на buzzerPin: замыкание на GND включает звук.
+ * Параметр ms задаёт длительность звукового сигнала в миллисекундах (по умолчанию 100 мс).
+ */
+void beep(int ms = 100) {
+  digitalWrite(buzzerPin, LOW);
+  delay(ms);
+  digitalWrite(buzzerPin, HIGH);
+}
+
+/**
+ * Функция strLength
+ * Вычисляет длину строки до первого пробела или до символа конца строки '\0'.
+ */
+int strLength(const char *s) {
   int i = 0;
-  // Цикл до достижения символа окончания строки или пробела
-  while (s[i] != '\0' && s[i] != ' ')
+  while (s[i] && s[i] != ' ')
     ++i;
-  // Возврат вычисленной длины строки
   return i;
 }
 
-// Функция для расчёта расстояния Левенштейна между двумя строками
+/**
+ * Функция levenshtein
+ * Вычисляет расстояние Левенштейна между строками s1 и s2.
+ */
 unsigned int levenshtein(char *s1, char *s2) {
-  // Объявление переменных для хранения длин строк
-  unsigned int s1len, s2len, x, y, lastdiag, olddiag;
-  // Вычисление длины первой строки
-  s1len = strlen(s1);
-  // Вычисление длины второй строки
-  s2len = strlen(s2);
-  // Объявление массива для хранения промежуточных результатов (колонка матрицы)
+  unsigned int s1len = strlen(s1), s2len = strlen(s2);
   unsigned int column[s1len + 1];
-  
-  // Инициализация первого столбца матрицы (расстояния)
-  for (y = 1; y <= s1len; y++)
+  // Инициализация первого столбца матрицы расстояний
+  for (unsigned int y = 1; y <= s1len; y++)
     column[y] = y;
-  
-  // Основной цикл для расчёта расстояния Левенштейна
-  for (x = 1; x <= s2len; x++) {
-    // Обновление первого элемента столбца
+  // Основной цикл по символам второй строки
+  for (unsigned int x = 1; x <= s2len; x++) {
     column[0] = x;
-    // Внутренний цикл для перебора символов первой строки
-    for (y = 1, lastdiag = x - 1; y <= s1len; y++) {
-      // Сохранение текущего значения для использования в следующей итерации
-      olddiag = column[y];
-      // Вычисление минимального из вариантов: удаление, вставка или замена символа
+    unsigned int lastdiag = x - 1;
+    for (unsigned int y = 1; y <= s1len; y++) {
+      unsigned int olddiag = column[y];
+      // Вычисляем стоимость удаления, вставки и замены
       column[y] = MIN3(
         column[y] + 1,
         column[y - 1] + 1,
         lastdiag + (s1[y - 1] == s2[x - 1] ? 0 : 1)
       );
-      // Обновление lastdiag для следующего шага
       lastdiag = olddiag;
     }
   }
-  
-  // Возврат конечного расстояния между строками
   return column[s1len];
 }
 
-  unsigned int cost[DICT_MAX_ELEMNTS];
-  // Вычисление расстояния Левенштейна для каждого паттерна словаря
-  for (int j = 0; j < DICT_MAX_ELEMNTS; j++) {
+/**
+ * Функция guessWord
+ * По входной строке target вычисляет стоимость Левенштейна до каждого паттерна
+ * и возвращает указатель на наиболее близкий или пустую строку, если ни один
+ * паттерн не уложился в порог.
+ */
+char* guessWord(char* target) {
+  static unsigned int cost[DICT_MAX_ELEMNTS];
+  // Считаем стоимости для каждого паттерна
+  for (int j = 0; j < DICT_MAX_ELEMNTS; j++)
     cost[j] = levenshtein(dict[j], target);
-    // Вывод стоимости для отладки через Serial
-    Serial.println("dict[j]=" + String(dict[j]) + " target=" + String(target) +
-                   " cost=" + String(cost[j]));
-  }
-  
-  // Инициализация переменных для поиска паттерна с наименьшей стоимостью
-  int lowestCostIndex = -1;
-  int lowestCost = LOWEST_COST_MAX_THREASHOLD;
-  
-  // Поиск паттерна с минимальным расстоянием, удовлетворяющим порогу
+  // Ищем лучший (минимальный) cost
+  int best = -1, bestCost = LOWEST_COST_MAX_THREASHHOLD;
   for (int j = 0; j < DICT_MAX_ELEMNTS; j++) {
-    if (cost[j] < lowestCost) {
-      lowestCost = cost[j];
-      lowestCostIndex = j;
+    if (cost[j] < bestCost) {
+      bestCost = cost[j];
+      best = j;
     }
   }
-  
-  // Если найден подходящий паттерн, возвращается он; иначе – пустая строка
-  if (lowestCostIndex > -1) {
-    return dict[lowestCostIndex];
-  } else {
-    return "";
-  }
+  // Возвращаем либо указатель на строку словаря, либо пустую строку
+  return (best >= 0 ? dict[best] : (char*)"");
 }
 
-// Функция для обработки распознанной команды (слова) с выводом на дисплей и управлением светодиодами
+/**
+ * Функция parseCommand
+ * Обрабатывает распознанное слово: включает нужный светодиод,
+ * выводит текст на дисплей и сбрасывает флаг ожидания.
+ */
 void parseCommand(char* str) {
-  // Получение наиболее похожего паттерна для введённой строки
-  char *gWord = guessWord(str);
-  // Вывод результата распознавания в Serial
-  Serial.println("guessed: " + String(gWord));
-  
-  // Очистка дисплея LCD
+  char *g = guessWord(str);
+  if (!g[0]) return;  // Если слово не распознано — выходим
+
+  // Вывод в сериал для отладки
+  Serial.print("guessed: "); Serial.println(g);
+
+  // Очистка дисплея и вывод метки
   lcd.clear();
-  // Установка курсора в начало первой строки
-  lcd.setCursor(0, 0);
-  // Вывод метки "Word:" на LCD
+  lcd.setCursor(0,0);
   lcd.print("Word:");
-  // Перемещение курсора на вторую строку дисплея
-  lcd.setCursor(0, 1);
-  
-  // Если паттерн не найден, дальнейшая обработка прекращается
-  if (gWord == "") {
-    return;
-  }
-  // Обработка команды "green"
-  else if (gWord == dict[0]) {
-    // Вывод текста "green" на дисплей
+  lcd.setCursor(0,1);
+
+  // Сначала выключаем все светодиоды
+  digitalWrite(ledGreen,  LOW);
+  digitalWrite(ledOrange, LOW);
+  digitalWrite(ledWhite,  LOW);
+
+  // Сравнение распознанного слова с паттернами через strcmp
+  if      (strcmp(g, dict[0]) == 0) {
     lcd.print("green");
-    // Включение зелёного светодиода
-    digitalWrite(ledGreen, HIGH);
-    // Выключение оранжевого светодиода
-    digitalWrite(ledOrange, LOW);
-    // Выключение белого светодиода
-    digitalWrite(ledWhite, LOW);
+    digitalWrite(ledGreen,  HIGH);
   }
-  // Обработка команды "orange"
-  else if (gWord == dict[1]) {
-    // Вывод текста "orange" на дисплей
+  else if (strcmp(g, dict[1]) == 0) {
     lcd.print("orange");
-    // Выключение зелёного светодиода
-    digitalWrite(ledGreen, LOW);
-    // Включение оранжевого светодиода
     digitalWrite(ledOrange, HIGH);
-    // Выключение белого светодиода
-    digitalWrite(ledWhite, LOW);
   }
-  // Обработка команды "white"
-  else if (gWord == dict[2]) {
-    // Вывод текста "white" на дисплей
+  else if (strcmp(g, dict[2]) == 0) {
     lcd.print("white");
-    // Выключение зелёного светодиода
-    digitalWrite(ledGreen, LOW);
-    // Выключение оранжевого светодиода
-    digitalWrite(ledOrange, LOW);
-    // Включение белого светодиода
-    digitalWrite(ledWhite, HIGH);
+    digitalWrite(ledWhite,  HIGH);
   }
-  // Обновление времени последнего распознавания команды и флага бездействия
+
+  // Обновляем время последней команды и сбрасываем флаг idle
   lastCommandTime = millis();
-  idleDisplayed = false;
+  idleDisplayed   = false;
 }
 
 void setup() {
-  // Настройка параметров uSpeech (распознавание, пороговые значения) и калибровка микрофона
-  voice.f_enabled = true;
-  voice.minVolume = 2000;
-  voice.fconstant = 500;
-  voice.econstant = 2;
-  voice.aconstant = 4;
-  voice.vconstant = 6;
-  voice.shconstant = 10;
-  // Запуск калибровки фонового уровня микрофона
-  voice.calibrate();
-  
-  // Инициализация последовательного порта для отладки
   Serial.begin(9600);
-  
-  // Настройка пинов светодиодов в режиме OUTPUT
-  pinMode(ledGreen, OUTPUT);
-  pinMode(ledOrange, OUTPUT);
-  pinMode(ledWhite, OUTPUT);
-  
-  // Инициализация дисплея LCD
+  // Инициализация дисплея
   lcd.init();
-  // Включение подсветки дисплея
   lcd.backlight();
-  // Очистка дисплея
   lcd.clear();
-  
-  // Вывод приветственного сообщения на дисплей
-  lcd.setCursor(0, 0);
-  lcd.print("Voice Recog");
-  lcd.setCursor(0, 1);
-  lcd.print("Say a color...");
-  
-  // Последовательное мигание светодиодов в течение 3 секунд при запуске
-  unsigned long startTime = millis();
-  while (millis() - startTime < 3000) {
-    // Включение зелёного светодиода
-    digitalWrite(ledGreen, HIGH);
-    delay(200);
-    // Выключение зелёного светодиода
-    digitalWrite(ledGreen, LOW);
-    delay(100);
-    
-    // Включение оранжевого светодиода
-    digitalWrite(ledOrange, HIGH);
-    delay(200);
-    // Выключение оранжевого светодиода
-    digitalWrite(ledOrange, LOW);
-    delay(100);
-    
-    // Включение белого светодиода
-    digitalWrite(ledWhite, HIGH);
-    delay(200);
-    // Выключение белого светодиода
-    digitalWrite(ledWhite, LOW);
-    delay(100);
+
+  // Настройка пинов на выход
+  pinMode(ledGreen,  OUTPUT);
+  pinMode(ledOrange, OUTPUT);
+  pinMode(ledWhite,  OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(enablePin, INPUT_PULLUP);
+  digitalWrite(buzzerPin, HIGH); // Выключаем буззер по умолчанию
+
+  // Стартовая фаза с индикатором загрузки и калибровкой
+  lcd.print("Loading...");
+  unsigned long t0 = millis();
+  while (millis() - t0 < 5000) {
+    unsigned long dt = millis() - t0;
+    // Пищим первые 1 секунду
+    if (dt < 1000) digitalWrite(buzzerPin, LOW);
+    else           digitalWrite(buzzerPin, HIGH);
+
+    // После первой секунды выводим сообщение о калибровке
+    if (dt >= 1000 && dt < 1250) {
+      lcd.clear();
+      lcd.print("Calibrating...");
+      static bool calibStarted = false;
+      if (!calibStarted) {
+        calibStarted = true;
+        // Настройка параметров распознавания перед калибровкой
+        voice.f_enabled = true;
+        voice.minVolume  = 1500;
+        voice.fconstant  = 500;
+        voice.econstant  = 2;
+        voice.aconstant  = 4;
+        voice.vconstant  = 6;
+        voice.shconstant = 10;
+        voice.calibrate();
+      }
+    }
+
+    // Мигаем всеми светодиодами в такт
+    bool st = ((millis() / 250) & 1);
+    digitalWrite(ledGreen,  st);
+    digitalWrite(ledOrange, st);
+    digitalWrite(ledWhite,  st);
+    delay(50);
   }
-  
-  // Очистка дисплея после мигания и вывод приглашения к произнесению команды
+
+  // После загрузки — выключаем все индикаторы
+  digitalWrite(buzzerPin, HIGH);
+  digitalWrite(ledGreen,  LOW);
+  digitalWrite(ledOrange, LOW);
+  digitalWrite(ledWhite,  LOW);
+
+  // Читаем состояние переключателя и выводим финальное сообщение
+  voiceEnabled = (digitalRead(enablePin) == LOW);
   lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Say a color...");
-  
-  // Инициализация переменных для контроля бездействия
+  if (voiceEnabled) lcd.print("Say a color...");
+  else              lcd.print("Voice OFF");
+
   lastCommandTime = millis();
-  idleDisplayed = false;
+  idleDisplayed   = false;
 }
 
 void loop() {
-  // Получение новой выборки звука с микрофона
-  voice.sample();
-  // Распознавание фонемы из полученной выборки
-  char p = voice.getPhoneme();
-  
-  // Если получен символ пробела или буфер заполнен, обработка накопленного слова
-  if (p == ' ' || index >= BUFFER_MAX_PHONEMES) {
-    // Если накопленная строка не пустая
-    if (strLength(inputString) > 0) {
-      // Вывод распознанного слова в Serial
-      Serial.println("received: " + String(inputString));
-      // Обработка команды, соответствующей накопленному слову
-      parseCommand(inputString);
-      // Очистка буфера для следующего слова
-      inputString[0] = 0;
-      // Сброс индекса буфера
-      index = 0;
-    }
-  } else {
-    // Добавление нового символа в буфер
-    inputString[index] = p;
-    // Увеличение индекса
-    index++;
-    // Обеспечение корректного завершения строки нулевым символом
-    inputString[index] = '\0';
-  }
-  
-  // Если с момента последнего распознавания прошло более 5 секунд, вывод сообщения idle
-  if (millis() - lastCommandTime > 5000 && !idleDisplayed) {
-    // Выключение всех светодиодов
-    digitalWrite(ledGreen, LOW);
-    digitalWrite(ledOrange, LOW);
-    digitalWrite(ledWhite, LOW);
-    
-    // Очистка дисплея LCD
+  // Отслеживаем смену положения переключателя
+  bool en = (digitalRead(enablePin) == LOW);
+  if (en != voiceEnabled) {
+    voiceEnabled = en;
+    // Сбрасываем буфер ввода
+    index = 0;
+    inputString[0] = '\0';
+    // Обновляем экран и при необходимости калибруем микрофон
     lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Say a color...");
-    
-    // Установка флага, что режим бездействия уже выведен
-    idleDisplayed = true;
+    if (voiceEnabled) {
+      lcd.print("Calibrating...");
+      voice.calibrate();
+      lcd.clear(); lcd.print("Say a color...");
+    } else {
+      lcd.print("Voice OFF");
+      // Выключаем все светодиоды
+      digitalWrite(ledGreen,  LOW);
+      digitalWrite(ledOrange, LOW);
+      digitalWrite(ledWhite,  LOW);
+    }
+    lastCommandTime = millis();
+    idleDisplayed   = false;
+  }
+
+  // Если голосовое управление включено — собираем и обрабатываем фонемы
+  if (voiceEnabled) {
+    voice.sample();
+    char p = voice.getPhoneme();
+    // Если пришёл пробел или буфер полон — обрабатываем накопленную строку
+    if (p == ' ' || index >= BUFFER_MAX_PHONEMES) {
+      if (strLength(inputString) > 0) {
+        parseCommand(inputString);
+        index = 0;
+        inputString[0] = '\0';
+      }
+    } else {
+      // Добавляем фонему в буфер
+      inputString[index++] = p;
+      inputString[index]   = '\0';
+    }
+
+    // Если нет команд больше 5 секунд — показываем приглашение к вводу
+    if (millis() - lastCommandTime > 5000 && !idleDisplayed) {
+      digitalWrite(ledGreen,  LOW);
+      digitalWrite(ledOrange, LOW);
+      digitalWrite(ledWhite,  LOW);
+      lcd.clear();
+      lcd.print("Say a color...");
+      idleDisplayed = true;
+    }
   }
 }
-
-
