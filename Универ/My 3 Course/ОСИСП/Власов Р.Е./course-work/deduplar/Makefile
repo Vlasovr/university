@@ -1,30 +1,45 @@
-CC           := clang
-OPENSSL_DIR  := /opt/homebrew/opt/openssl@3
-CFLAGS       := -Wall -Wextra -pedantic -std=c11 -I$(OPENSSL_DIR)/include
-LDFLAGS      := -L$(OPENSSL_DIR)/lib -Wl,-rpath,$(OPENSSL_DIR)/lib -lssl -lcrypto
+# ---------- настраиваемые переменные ----------
+CC          ?= gcc
+PKG_CONFIG  ?= pkg-config   # можно переопределить: PKG_CONFIG=pkgconf
 
-SRC          := src/deduplar.c
-BIN          := build/deduplar
-SYMLINK      := /usr/local/bin/deduplar
-SCAN_INTERVAL:= 20
+PREFIX ?= /usr/local
+BINDIR ?= $(PREFIX)/bin
+BUILD_DIR   ?= build
+SRC         := src/deduplar.c
+BIN         := $(BUILD_DIR)/deduplar
+SCAN_INTERVAL ?= 20                  # секунд
 
+# Куда класть логи/lock/журнал при рантайме
+CACHE_DIR   ?= $(HOME)/.cache/deduplar
+
+# ---------- флаги сборки ----------
+OPENSSL_CFLAGS  := $(shell $(PKG_CONFIG) --cflags openssl)
+OPENSSL_LDFLAGS := $(shell $(PKG_CONFIG) --libs   openssl)
+
+CFLAGS   ?= -O2 -std=c11 -pedantic -Wall -Wextra -pthread \
+            $(OPENSSL_CFLAGS)
+
+LDFLAGS  ?= $(OPENSSL_LDFLAGS) -pthread
+
+# ---------- цели ----------
 all: $(BIN)
 
 $(BIN): $(SRC)
-	mkdir -p $(dir $@) $(HOME)/Library/Caches/deduplar
-	$(CC) -o $@ $^ $(CFLAGS) $(LDFLAGS) \
-		-DLOG_FILE=\"$(HOME)/Library/Caches/deduplar/deduplar.log\" \
-		-DLOCK_FILE=\"$(HOME)/Library/Caches/deduplar/deduplar.lock\" \
-		-DBIN_FILE=\"$(HOME)/Library/Caches/deduplar/deduplar.bin\" \
+	@mkdir -p $(dir $@) $(CACHE_DIR)
+	$(CC) $(CFLAGS) $(SRC) -o $@ $(LDFLAGS) \
+		-DLOG_FILE=\"$(CACHE_DIR)/deduplar.log\" \
+		-DLOCK_FILE=\"$(CACHE_DIR)/deduplar.lock\" \
+		-DBIN_FILE=\"$(CACHE_DIR)/deduplar.bin\" \
 		-DSCAN_INTERVAL=$(SCAN_INTERVAL)
 
 install: $(BIN)
-	sudo install -m 755 $(BIN) $(SYMLINK)
+	install -d $(DESTDIR)$(BINDIR)
+	install -m755 $(BIN) $(DESTDIR)$(BINDIR)/deduplar
 
 uninstall:
-	sudo rm -f $(SYMLINK)
+	rm -f $(DESTDIR)$(BINDIR)/deduplar
 
 clean:
-	rm -rf build
+	rm -rf $(BUILD_DIR)
 
 .PHONY: all install uninstall clean

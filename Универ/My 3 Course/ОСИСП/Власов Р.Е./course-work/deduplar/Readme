@@ -1,0 +1,126 @@
+# deduplar — демон обнаружения и устранения дубликатов файлов
+
+`deduplar` — это фоновая служба, которая периодически сканирует указанную
+директорию (по умолчанию — домашний каталог пользователя),
+находит файлы‑дубликаты (идентичные *размеру* и *MD5‑хэшу*) и заменяет
+их жёсткими ссылками на первый встретившийся экземпляр.
+
+* **Журнал** — подробный текстовый лог в `~/Library/Caches/deduplar/deduplar.log`.
+* **Бинарный журнал** используется как быстрая база найденных файлов за один проход.
+  Перед каждым сканированием он обнуляется.
+* **Lock‑файл** гарантирует, что одновременно работает только один экземпляр.
+* **Обработка Ctrl‑C / SIGINT** — корректная остановка, очистка lock‑файла.
+
+---
+# 1. Подготовить тестовую папку
+mkdir -p /tmp/dedup-test && cd /tmp/dedup-test
+
+# три одинаковых текстовых файла
+echo "duplicate test" > fileA.txt
+cp fileA.txt fileB.txt
+cp fileA.txt fileC.txt
+
+# три одинаковых .c‑файла
+cp "/home/roman/Documents/Власов Р.Е./Власов Р.Е./course-work/deduplar/src/deduplar.c" file1.c
+cp file1.c file2.c
+cp file1.c file3.c
+
+# 2. Убрать «висящие» демоны и старый кеш
+sudo pkill -f deduplar       || true
+rm -rf ~/.cache/deduplar
+sudo rm -rf /root/.cache/deduplar  # если запускали через sudo
+
+# 3. Запустить демон на тестовой папке
+deduplar /tmp/dedup-test &    # фон или просто в другом терминале
+
+# 4. Подождать пару секунд, смотреть лог
+tail -f ~/.cache/deduplar/deduplar.log
+
+# 5. Проверить, что одинаковые файлы имеют один inode
+ls -li /tmp/dedup-test
+
+# 6. Остановить демон
+deduplar -kill
+
+
+# 0. Убедитесь, что старых демонов нет
+pkill -f deduplar || true
+rm -rf ~/.cache/deduplar
+
+# 1. Запускаем
+deduplar ~/Downloads
+
+# 2. Смотрим свежие записи
+tail -f ~/.cache/deduplar/deduplar.log
+
+# 3. Проверяем, например, все .txt с более чем одной жёсткой ссылкой
+find ~/Downloads -type f -name '*.txt' -links +1 -exec ls -li {} +
+
+# 4. Останавливаем
+deduplar -kill
+
+
+## Сборка
+
+```bash
+sudo dnf install gcc openssl-devel
+make                               # создаст build/deduplar
+```
+
+### Режимы компиляции
+
+| Цель         | Описание                                                             |
+| ------------ | -------------------------------------------------------------------- |
+| `make`       | сборка `release` + проверки UBSan/                                   |
+| `make debug` | без оптимизаций, дополнительные флаги `-fsanitize=address,undefined` |
+| `make clean` | удалить каталог `build/`                                             |
+
+По умолчанию все артифакты кладутся в `build/`.
+
+---
+
+## Запуск
+
+```bash
+# первый запуск (демонизируется сам)
+./build/deduplar                   # будет сканировать $HOME каждые 20 с
+
+# указать явную папку
+./build/deduplar /path/to/scan
+
+# корректно остановить работающий демон
+./build/deduplar -kill             # отправит SIGTERM по PID из lock‑файла
+```
+
+После запуска:
+
+* `deduplar.log` — читаемый лог.
+* `deduplar.bin` — временный бинарный журнал текущего прохода.
+
+## Внутренняя архитектура (кратко)
+
+```
+main()
+ ├─ ensure_singleton()   — проверка lock
+ ├─ daemonize()          — двойной fork, setsid, /dev/null → std*
+ ├─ create_lock_file()   — PID → *.lock
+ ├─ signal(SIGINT/TERM)  → on_signal() → cleanup() → exit
+ └─ while (!g_stop)      — каждые 20 с
+       ├─ reset_bin()
+       └─ traverse(target)
+            ├─ compute_md5()
+            ├─ lookup_duplicate()
+            └─ link()/unlink()
+```
+
+### Формат бинарного журнала
+
+```
+uint64   path_len
+char     path[path_len]
+uint64   size
+char     md5[32]\0
+... повторяется до EOF
+```
+
+---

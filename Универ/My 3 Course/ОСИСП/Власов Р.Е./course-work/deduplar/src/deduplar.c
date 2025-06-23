@@ -15,12 +15,14 @@
 #include <errno.h>               // errno
 
 #include <limits.h>              // PATH_MAX
+#include <openssl/crypto.h>   // OPENSSL_cleanup, CRYPTO_cleanup_all_ex_data и др.
+#include <openssl/err.h>
 
 /* =================================================================
    Общие константы
    ================================================================= */
 #define APP_NAME        "deduplar"                           // имя утилиты
-#define APP_CACHE_FMT   "%s/Library/Caches/" APP_NAME        // формат папки кэша
+#define APP_CACHE_FMT   "%s/.cache/" APP_NAME        // формат папки кэша
 #define HASH_TEXT_LEN   33                                   // 32 байта hex-MD5 + '\0'
 #define MSG_BUF_LEN     700                                  // размер буфера для сообщений
 #define SCAN_INTERVAL   20                                   // пауза между сканированиями (сек)
@@ -70,7 +72,16 @@ static void daemonize(void);
 static int ensure_singleton(const char *lock_path);
 static int create_lock_file(const char *lock_path);
 static void kill_running(const char *lock_path);
-
+static void openssl_cleanup(void)
+{
+#if OPENSSL_VERSION_NUMBER >= 0x10100000L   /* 1.1.0 и новее  */
+    OPENSSL_cleanup();                      /* “Большая кнопка” */
+#else                                       /* 1.0.2 и старее */
+    EVP_cleanup();
+    CRYPTO_cleanup_all_ex_data();
+    ERR_free_strings();
+#endif
+}
 /* =================================================================
    Точка входа
    ================================================================= */
@@ -79,12 +90,13 @@ int main(int argc, char *argv[])
     // ----------------------------------------------------------------
     // 1. Получаем HOME для формирования путей
     // ----------------------------------------------------------------
-    const char *home = getenv("HOME");
+    const char *home = getenv("XDG_CACHE_HOME");
+    if (!home || !*home)
+        home = getenv("HOME");          // fallback
     if (!home) {
         fprintf(stderr, "%s: HOME не задан\n", APP_NAME);
-        return EXIT_FAILURE;
+          return EXIT_FAILURE;
     }
-
     // ----------------------------------------------------------------
     // 2. Формируем пути к cache-каталогу и трём необходимые строки
     // ----------------------------------------------------------------
@@ -101,6 +113,7 @@ int main(int argc, char *argv[])
     // ----------------------------------------------------------------
     if (argc > 1 && strcmp(argv[1], "-kill") == 0) {
         kill_running(g_lock_path);
+        openssl_cleanup(); 
         return EXIT_SUCCESS;
     }
 
@@ -397,6 +410,7 @@ static void on_signal(int sig)
         default: break;
     }
     cleanup();
+    openssl_cleanup();  
     exit((sig==SIGINT||sig==SIGTERM) ? EXIT_SUCCESS : EXIT_FAILURE);
 }
 
