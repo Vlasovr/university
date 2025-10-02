@@ -23,11 +23,6 @@ void Car::setCapacity()
     capacity_ = new_capacity;
 }
 
-//std::string Car::getEngineType() const
-//{
-//    return engine_type;
-//}
-
 void Car::getTravelCost(double distance) const
 {
     if (std::strcmp(engine_type.c_str(), "electric") == 0 || (std::strcmp(engine_type.c_str(), "hybrid")) == 0) {
