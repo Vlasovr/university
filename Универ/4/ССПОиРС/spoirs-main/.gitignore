@@ -1,0 +1,25 @@
+# Виртуальное окружение
+**/.venv/
+
+# Кэш Python
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+
+# Кэш pip и лог файлы установки
+**/pip-log.txt
+**/pip-delete-this-directory.txt
+
+# Общие временные файлы и каталоги
+**/*.log
+**/*.tmp
+**/*.bak
+**/*.swp
+**/*.DS_Store
+**/Thumbs.db
+
+# Файлы среды разработки PyCharm
+**/.idea/
+
+.bash_logout
+.~lock.*

@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="lab22">
+		<CBX_INST_ENTRY INSTANCE_NAME="|Block2|lpm_compare1:inst4|lpm_compare:lpm_compare_component" CBX_FILE_NAME="cmpr_2cj.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Block2|lpm_counter7:inst|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_40j.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

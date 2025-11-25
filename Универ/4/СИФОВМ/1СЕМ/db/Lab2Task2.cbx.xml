@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="Lab2Task2">
+		<CBX_INST_ENTRY INSTANCE_NAME="|Lab2Task2|lpm_counter0:inst|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_8gj.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Lab2Task2|lpm_counter1:inst1|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_6ai.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|Lab2Task2|lpm_decode0:inst2|lpm_decode:lpm_decode_component" CBX_FILE_NAME="decode_e9f.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

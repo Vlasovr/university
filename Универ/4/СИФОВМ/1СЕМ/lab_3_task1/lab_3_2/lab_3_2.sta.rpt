@@ -1,0 +1,799 @@
+TimeQuest Timing Analyzer report for lab_3_2
+Wed Nov 19 17:20:42 2025
+Quartus II Version 9.1 Build 222 10/21/2009 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. TimeQuest Timing Analyzer Summary
+  3. Parallel Compilation
+  4. Clocks
+  5. Slow Model Fmax Summary
+  6. Slow Model Setup Summary
+  7. Slow Model Hold Summary
+  8. Slow Model Recovery Summary
+  9. Slow Model Removal Summary
+ 10. Slow Model Minimum Pulse Width Summary
+ 11. Setup Times
+ 12. Hold Times
+ 13. Clock to Output Times
+ 14. Minimum Clock to Output Times
+ 15. Propagation Delay
+ 16. Minimum Propagation Delay
+ 17. Fast Model Setup Summary
+ 18. Fast Model Hold Summary
+ 19. Fast Model Recovery Summary
+ 20. Fast Model Removal Summary
+ 21. Fast Model Minimum Pulse Width Summary
+ 22. Setup Times
+ 23. Hold Times
+ 24. Clock to Output Times
+ 25. Minimum Clock to Output Times
+ 26. Propagation Delay
+ 27. Minimum Propagation Delay
+ 28. Multicorner Timing Analysis Summary
+ 29. Setup Times
+ 30. Hold Times
+ 31. Clock to Output Times
+ 32. Minimum Clock to Output Times
+ 33. Progagation Delay
+ 34. Minimum Progagation Delay
+ 35. Setup Transfers
+ 36. Hold Transfers
+ 37. Report TCCS
+ 38. Report RSKM
+ 39. Unconstrained Paths
+ 40. TimeQuest Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2009 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------+
+; TimeQuest Timing Analyzer Summary                                    ;
++--------------------+-------------------------------------------------+
+; Quartus II Version ; Version 9.1 Build 222 10/21/2009 SJ Web Edition ;
+; Revision Name      ; lab_3_2                                         ;
+; Device Family      ; Stratix II                                      ;
+; Device Name        ; EP2S15F484C3                                    ;
+; Timing Models      ; Final                                           ;
+; Delay Model        ; Combined                                        ;
+; Rise/Fall Delays   ; Unavailable                                     ;
++--------------------+-------------------------------------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 6      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                            ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets   ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------+
+; clock      ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clock } ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------+
+
+
++--------------------------------------------------+
+; Slow Model Fmax Summary                          ;
++------------+-----------------+------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
++------------+-----------------+------------+------+
+; 270.34 MHz ; 270.34 MHz      ; clock      ;      ;
++------------+-----------------+------------+------+
+This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
+
+
++--------------------------------+
+; Slow Model Setup Summary       ;
++-------+--------+---------------+
+; Clock ; Slack  ; End Point TNS ;
++-------+--------+---------------+
+; clock ; -2.699 ; -43.722       ;
++-------+--------+---------------+
+
+
++-------------------------------+
+; Slow Model Hold Summary       ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; clock ; 0.433 ; 0.000         ;
++-------+-------+---------------+
+
+
+-------------------------------
+; Slow Model Recovery Summary ;
+-------------------------------
+No paths to report.
+
+
+------------------------------
+; Slow Model Removal Summary ;
+------------------------------
+No paths to report.
+
+
++----------------------------------------+
+; Slow Model Minimum Pulse Width Summary ;
++-------+--------+-----------------------+
+; Clock ; Slack  ; End Point TNS         ;
++-------+--------+-----------------------+
+; clock ; -1.000 ; -30.314               ;
++-------+--------+-----------------------+
+
+
++----------------------------------------------------------------------------+
+; Setup Times                                                                ;
++----------------+------------+-------+-------+------------+-----------------+
+; Data Port      ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++----------------+------------+-------+-------+------------+-----------------+
+; addr[*]        ; clock      ; 3.018 ; 3.018 ; Rise       ; clock           ;
+;  addr[0]       ; clock      ; 2.603 ; 2.603 ; Rise       ; clock           ;
+;  addr[1]       ; clock      ; 3.018 ; 3.018 ; Rise       ; clock           ;
+;  addr[2]       ; clock      ; 2.753 ; 2.753 ; Rise       ; clock           ;
+;  addr[3]       ; clock      ; 2.508 ; 2.508 ; Rise       ; clock           ;
+;  addr[4]       ; clock      ; 2.374 ; 2.374 ; Rise       ; clock           ;
+;  addr[5]       ; clock      ; 2.572 ; 2.572 ; Rise       ; clock           ;
+;  addr[6]       ; clock      ; 2.377 ; 2.377 ; Rise       ; clock           ;
+;  addr[7]       ; clock      ; 2.607 ; 2.607 ; Rise       ; clock           ;
+; ram_chip_en    ; clock      ; 4.624 ; 4.624 ; Rise       ; clock           ;
+; ram_mode_read  ; clock      ; 4.588 ; 4.588 ; Rise       ; clock           ;
+; ram_mode_write ; clock      ; 4.098 ; 4.098 ; Rise       ; clock           ;
+; reg_read       ; clock      ; 4.084 ; 4.084 ; Rise       ; clock           ;
+; reg_write      ; clock      ; 2.867 ; 2.867 ; Rise       ; clock           ;
+; rom_read       ; clock      ; 4.284 ; 4.284 ; Rise       ; clock           ;
++----------------+------------+-------+-------+------------+-----------------+
+
+
++------------------------------------------------------------------------------+
+; Hold Times                                                                   ;
++----------------+------------+--------+--------+------------+-----------------+
+; Data Port      ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++----------------+------------+--------+--------+------------+-----------------+
+; addr[*]        ; clock      ; -2.122 ; -2.122 ; Rise       ; clock           ;
+;  addr[0]       ; clock      ; -2.349 ; -2.349 ; Rise       ; clock           ;
+;  addr[1]       ; clock      ; -2.314 ; -2.314 ; Rise       ; clock           ;
+;  addr[2]       ; clock      ; -2.331 ; -2.331 ; Rise       ; clock           ;
+;  addr[3]       ; clock      ; -2.283 ; -2.283 ; Rise       ; clock           ;
+;  addr[4]       ; clock      ; -2.122 ; -2.122 ; Rise       ; clock           ;
+;  addr[5]       ; clock      ; -2.319 ; -2.319 ; Rise       ; clock           ;
+;  addr[6]       ; clock      ; -2.129 ; -2.129 ; Rise       ; clock           ;
+;  addr[7]       ; clock      ; -2.352 ; -2.352 ; Rise       ; clock           ;
+; ram_chip_en    ; clock      ; -2.828 ; -2.828 ; Rise       ; clock           ;
+; ram_mode_read  ; clock      ; -3.329 ; -3.329 ; Rise       ; clock           ;
+; ram_mode_write ; clock      ; -3.873 ; -3.873 ; Rise       ; clock           ;
+; reg_read       ; clock      ; -2.677 ; -2.677 ; Rise       ; clock           ;
+; reg_write      ; clock      ; -2.391 ; -2.391 ; Rise       ; clock           ;
+; rom_read       ; clock      ; -2.815 ; -2.815 ; Rise       ; clock           ;
++----------------+------------+--------+--------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Clock to Output Times                                                    ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; data_out[*]  ; clock      ; 9.710 ; 9.710 ; Rise       ; clock           ;
+;  data_out[0] ; clock      ; 8.829 ; 8.829 ; Rise       ; clock           ;
+;  data_out[1] ; clock      ; 8.164 ; 8.164 ; Rise       ; clock           ;
+;  data_out[2] ; clock      ; 8.182 ; 8.182 ; Rise       ; clock           ;
+;  data_out[3] ; clock      ; 8.323 ; 8.323 ; Rise       ; clock           ;
+;  data_out[4] ; clock      ; 8.621 ; 8.621 ; Rise       ; clock           ;
+;  data_out[5] ; clock      ; 8.511 ; 8.511 ; Rise       ; clock           ;
+;  data_out[6] ; clock      ; 9.102 ; 9.102 ; Rise       ; clock           ;
+;  data_out[7] ; clock      ; 9.710 ; 9.710 ; Rise       ; clock           ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                            ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; data_out[*]  ; clock      ; 5.386 ; 5.386 ; Rise       ; clock           ;
+;  data_out[0] ; clock      ; 5.897 ; 5.897 ; Rise       ; clock           ;
+;  data_out[1] ; clock      ; 5.386 ; 5.386 ; Rise       ; clock           ;
+;  data_out[2] ; clock      ; 5.679 ; 5.679 ; Rise       ; clock           ;
+;  data_out[3] ; clock      ; 5.679 ; 5.679 ; Rise       ; clock           ;
+;  data_out[4] ; clock      ; 6.360 ; 6.360 ; Rise       ; clock           ;
+;  data_out[5] ; clock      ; 5.850 ; 5.850 ; Rise       ; clock           ;
+;  data_out[6] ; clock      ; 6.418 ; 6.418 ; Rise       ; clock           ;
+;  data_out[7] ; clock      ; 6.288 ; 6.288 ; Rise       ; clock           ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++---------------------------------------------------------------+
+; Propagation Delay                                             ;
++---------------+-------------+-------+--------+--------+-------+
+; Input Port    ; Output Port ; RR    ; RF     ; FR     ; FF    ;
++---------------+-------------+-------+--------+--------+-------+
+; ram_chip_en   ; data_out[0] ; 8.832 ; 8.832  ; 8.832  ; 8.832 ;
+; ram_chip_en   ; data_out[1] ; 8.104 ; 8.104  ; 8.104  ; 8.104 ;
+; ram_chip_en   ; data_out[2] ; 8.269 ; 8.269  ; 8.269  ; 8.269 ;
+; ram_chip_en   ; data_out[3] ; 8.266 ; 8.266  ; 8.266  ; 8.266 ;
+; ram_chip_en   ; data_out[4] ; 8.794 ; 8.794  ; 8.794  ; 8.794 ;
+; ram_chip_en   ; data_out[5] ; 8.673 ; 8.673  ; 8.673  ; 8.673 ;
+; ram_chip_en   ; data_out[6] ; 9.222 ; 9.222  ; 9.222  ; 9.222 ;
+; ram_chip_en   ; data_out[7] ; 9.844 ; 9.844  ; 9.844  ; 9.844 ;
+; ram_mode_read ; data_out[0] ; 8.300 ; 9.598  ; 9.598  ; 8.300 ;
+; ram_mode_read ; data_out[1] ; 8.201 ; 8.653  ; 8.653  ; 8.201 ;
+; ram_mode_read ; data_out[2] ; 8.081 ; 8.969  ; 8.969  ; 8.081 ;
+; ram_mode_read ; data_out[3] ; 8.191 ; 8.962  ; 8.962  ; 8.191 ;
+; ram_mode_read ; data_out[4] ; 8.198 ; 9.253  ; 9.253  ; 8.198 ;
+; ram_mode_read ; data_out[5] ; 8.262 ; 9.131  ; 9.131  ; 8.262 ;
+; ram_mode_read ; data_out[6] ; 8.882 ; 9.485  ; 9.485  ; 8.882 ;
+; ram_mode_read ; data_out[7] ; 8.999 ; 10.143 ; 10.143 ; 8.999 ;
+; reg_read      ; data_out[0] ; 7.796 ; 7.944  ; 7.944  ; 7.796 ;
+; reg_read      ; data_out[1] ; 7.697 ; 7.762  ; 7.762  ; 7.697 ;
+; reg_read      ; data_out[2] ; 7.577 ; 7.730  ; 7.730  ; 7.577 ;
+; reg_read      ; data_out[3] ; 7.687 ; 7.771  ; 7.771  ; 7.687 ;
+; reg_read      ; data_out[4] ; 7.694 ; 7.694  ; 7.694  ; 7.694 ;
+; reg_read      ; data_out[5] ; 7.758 ; 7.821  ; 7.821  ; 7.758 ;
+; reg_read      ; data_out[6] ; 8.378 ; 8.451  ; 8.451  ; 8.378 ;
+; reg_read      ; data_out[7] ; 8.495 ; 8.495  ; 8.495  ; 8.495 ;
+; rom_read      ; data_out[0] ; 7.996 ; 9.160  ; 9.160  ; 7.996 ;
+; rom_read      ; data_out[1] ; 7.897 ; 8.307  ; 8.307  ; 7.897 ;
+; rom_read      ; data_out[2] ; 7.777 ; 8.268  ; 8.268  ; 7.777 ;
+; rom_read      ; data_out[3] ; 7.887 ; 8.258  ; 8.258  ; 7.887 ;
+; rom_read      ; data_out[4] ; 7.894 ; 8.589  ; 8.589  ; 7.894 ;
+; rom_read      ; data_out[5] ; 7.958 ; 8.440  ; 8.440  ; 7.958 ;
+; rom_read      ; data_out[6] ; 8.578 ; 9.181  ; 9.181  ; 8.578 ;
+; rom_read      ; data_out[7] ; 8.695 ; 9.806  ; 9.806  ; 8.695 ;
++---------------+-------------+-------+--------+--------+-------+
+
+
++-------------------------------------------------------------+
+; Minimum Propagation Delay                                   ;
++---------------+-------------+-------+-------+-------+-------+
+; Input Port    ; Output Port ; RR    ; RF    ; FR    ; FF    ;
++---------------+-------------+-------+-------+-------+-------+
+; ram_chip_en   ; data_out[0] ; 8.034 ; 8.034 ; 8.034 ; 8.034 ;
+; ram_chip_en   ; data_out[1] ; 7.935 ; 7.935 ; 7.935 ; 7.935 ;
+; ram_chip_en   ; data_out[2] ; 7.815 ; 7.815 ; 7.815 ; 7.815 ;
+; ram_chip_en   ; data_out[3] ; 7.925 ; 7.925 ; 7.925 ; 7.925 ;
+; ram_chip_en   ; data_out[4] ; 7.932 ; 7.932 ; 7.932 ; 7.932 ;
+; ram_chip_en   ; data_out[5] ; 7.996 ; 7.996 ; 7.996 ; 7.996 ;
+; ram_chip_en   ; data_out[6] ; 8.616 ; 8.616 ; 8.616 ; 8.616 ;
+; ram_chip_en   ; data_out[7] ; 8.733 ; 8.733 ; 8.733 ; 8.733 ;
+; ram_mode_read ; data_out[0] ; 8.300 ; 8.300 ; 8.300 ; 8.300 ;
+; ram_mode_read ; data_out[1] ; 8.201 ; 8.201 ; 8.201 ; 8.201 ;
+; ram_mode_read ; data_out[2] ; 8.081 ; 8.081 ; 8.081 ; 8.081 ;
+; ram_mode_read ; data_out[3] ; 8.191 ; 8.191 ; 8.191 ; 8.191 ;
+; ram_mode_read ; data_out[4] ; 8.198 ; 8.198 ; 8.198 ; 8.198 ;
+; ram_mode_read ; data_out[5] ; 8.262 ; 8.262 ; 8.262 ; 8.262 ;
+; ram_mode_read ; data_out[6] ; 8.882 ; 8.882 ; 8.882 ; 8.882 ;
+; ram_mode_read ; data_out[7] ; 8.999 ; 8.999 ; 8.999 ; 8.999 ;
+; reg_read      ; data_out[0] ; 7.796 ; 7.796 ; 7.796 ; 7.796 ;
+; reg_read      ; data_out[1] ; 7.697 ; 7.697 ; 7.697 ; 7.697 ;
+; reg_read      ; data_out[2] ; 7.577 ; 7.577 ; 7.577 ; 7.577 ;
+; reg_read      ; data_out[3] ; 7.687 ; 7.687 ; 7.687 ; 7.687 ;
+; reg_read      ; data_out[4] ; 7.694 ; 7.294 ; 7.294 ; 7.694 ;
+; reg_read      ; data_out[5] ; 7.758 ; 7.758 ; 7.758 ; 7.758 ;
+; reg_read      ; data_out[6] ; 8.378 ; 8.378 ; 8.378 ; 8.378 ;
+; reg_read      ; data_out[7] ; 8.495 ; 8.415 ; 8.415 ; 8.495 ;
+; rom_read      ; data_out[0] ; 7.996 ; 7.996 ; 7.996 ; 7.996 ;
+; rom_read      ; data_out[1] ; 7.897 ; 7.897 ; 7.897 ; 7.897 ;
+; rom_read      ; data_out[2] ; 7.777 ; 7.777 ; 7.777 ; 7.777 ;
+; rom_read      ; data_out[3] ; 7.887 ; 7.887 ; 7.887 ; 7.887 ;
+; rom_read      ; data_out[4] ; 7.894 ; 7.894 ; 7.894 ; 7.894 ;
+; rom_read      ; data_out[5] ; 7.958 ; 7.958 ; 7.958 ; 7.958 ;
+; rom_read      ; data_out[6] ; 8.578 ; 8.578 ; 8.578 ; 8.578 ;
+; rom_read      ; data_out[7] ; 8.695 ; 8.695 ; 8.695 ; 8.695 ;
++---------------+-------------+-------+-------+-------+-------+
+
+
++--------------------------------+
+; Fast Model Setup Summary       ;
++-------+--------+---------------+
+; Clock ; Slack  ; End Point TNS ;
++-------+--------+---------------+
+; clock ; -1.253 ; -18.142       ;
++-------+--------+---------------+
+
+
++-------------------------------+
+; Fast Model Hold Summary       ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; clock ; 0.264 ; 0.000         ;
++-------+-------+---------------+
+
+
+-------------------------------
+; Fast Model Recovery Summary ;
+-------------------------------
+No paths to report.
+
+
+------------------------------
+; Fast Model Removal Summary ;
+------------------------------
+No paths to report.
+
+
++----------------------------------------+
+; Fast Model Minimum Pulse Width Summary ;
++-------+--------+-----------------------+
+; Clock ; Slack  ; End Point TNS         ;
++-------+--------+-----------------------+
+; clock ; -1.000 ; -30.602               ;
++-------+--------+-----------------------+
+
+
++----------------------------------------------------------------------------+
+; Setup Times                                                                ;
++----------------+------------+-------+-------+------------+-----------------+
+; Data Port      ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++----------------+------------+-------+-------+------------+-----------------+
+; addr[*]        ; clock      ; 1.666 ; 1.666 ; Rise       ; clock           ;
+;  addr[0]       ; clock      ; 1.509 ; 1.509 ; Rise       ; clock           ;
+;  addr[1]       ; clock      ; 1.666 ; 1.666 ; Rise       ; clock           ;
+;  addr[2]       ; clock      ; 1.554 ; 1.554 ; Rise       ; clock           ;
+;  addr[3]       ; clock      ; 1.510 ; 1.510 ; Rise       ; clock           ;
+;  addr[4]       ; clock      ; 1.378 ; 1.378 ; Rise       ; clock           ;
+;  addr[5]       ; clock      ; 1.481 ; 1.481 ; Rise       ; clock           ;
+;  addr[6]       ; clock      ; 1.382 ; 1.382 ; Rise       ; clock           ;
+;  addr[7]       ; clock      ; 1.511 ; 1.511 ; Rise       ; clock           ;
+; ram_chip_en    ; clock      ; 2.739 ; 2.739 ; Rise       ; clock           ;
+; ram_mode_read  ; clock      ; 2.751 ; 2.751 ; Rise       ; clock           ;
+; ram_mode_write ; clock      ; 2.430 ; 2.430 ; Rise       ; clock           ;
+; reg_read       ; clock      ; 2.350 ; 2.350 ; Rise       ; clock           ;
+; reg_write      ; clock      ; 1.650 ; 1.650 ; Rise       ; clock           ;
+; rom_read       ; clock      ; 2.371 ; 2.371 ; Rise       ; clock           ;
++----------------+------------+-------+-------+------------+-----------------+
+
+
++------------------------------------------------------------------------------+
+; Hold Times                                                                   ;
++----------------+------------+--------+--------+------------+-----------------+
+; Data Port      ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++----------------+------------+--------+--------+------------+-----------------+
+; addr[*]        ; clock      ; -1.242 ; -1.242 ; Rise       ; clock           ;
+;  addr[0]       ; clock      ; -1.374 ; -1.374 ; Rise       ; clock           ;
+;  addr[1]       ; clock      ; -1.338 ; -1.338 ; Rise       ; clock           ;
+;  addr[2]       ; clock      ; -1.351 ; -1.351 ; Rise       ; clock           ;
+;  addr[3]       ; clock      ; -1.396 ; -1.396 ; Rise       ; clock           ;
+;  addr[4]       ; clock      ; -1.242 ; -1.242 ; Rise       ; clock           ;
+;  addr[5]       ; clock      ; -1.346 ; -1.346 ; Rise       ; clock           ;
+;  addr[6]       ; clock      ; -1.247 ; -1.247 ; Rise       ; clock           ;
+;  addr[7]       ; clock      ; -1.377 ; -1.377 ; Rise       ; clock           ;
+; ram_chip_en    ; clock      ; -1.655 ; -1.655 ; Rise       ; clock           ;
+; ram_mode_read  ; clock      ; -2.093 ; -2.093 ; Rise       ; clock           ;
+; ram_mode_write ; clock      ; -2.320 ; -2.320 ; Rise       ; clock           ;
+; reg_read       ; clock      ; -1.612 ; -1.612 ; Rise       ; clock           ;
+; reg_write      ; clock      ; -1.408 ; -1.408 ; Rise       ; clock           ;
+; rom_read       ; clock      ; -1.621 ; -1.621 ; Rise       ; clock           ;
++----------------+------------+--------+--------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Clock to Output Times                                                    ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; data_out[*]  ; clock      ; 5.649 ; 5.649 ; Rise       ; clock           ;
+;  data_out[0] ; clock      ; 5.204 ; 5.204 ; Rise       ; clock           ;
+;  data_out[1] ; clock      ; 4.865 ; 4.865 ; Rise       ; clock           ;
+;  data_out[2] ; clock      ; 4.860 ; 4.860 ; Rise       ; clock           ;
+;  data_out[3] ; clock      ; 4.945 ; 4.945 ; Rise       ; clock           ;
+;  data_out[4] ; clock      ; 5.128 ; 5.128 ; Rise       ; clock           ;
+;  data_out[5] ; clock      ; 5.057 ; 5.057 ; Rise       ; clock           ;
+;  data_out[6] ; clock      ; 5.377 ; 5.377 ; Rise       ; clock           ;
+;  data_out[7] ; clock      ; 5.649 ; 5.649 ; Rise       ; clock           ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                            ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; data_out[*]  ; clock      ; 3.127 ; 3.127 ; Rise       ; clock           ;
+;  data_out[0] ; clock      ; 3.377 ; 3.377 ; Rise       ; clock           ;
+;  data_out[1] ; clock      ; 3.127 ; 3.127 ; Rise       ; clock           ;
+;  data_out[2] ; clock      ; 3.255 ; 3.255 ; Rise       ; clock           ;
+;  data_out[3] ; clock      ; 3.285 ; 3.285 ; Rise       ; clock           ;
+;  data_out[4] ; clock      ; 3.643 ; 3.643 ; Rise       ; clock           ;
+;  data_out[5] ; clock      ; 3.388 ; 3.388 ; Rise       ; clock           ;
+;  data_out[6] ; clock      ; 3.673 ; 3.673 ; Rise       ; clock           ;
+;  data_out[7] ; clock      ; 3.600 ; 3.600 ; Rise       ; clock           ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++-------------------------------------------------------------+
+; Propagation Delay                                           ;
++---------------+-------------+-------+-------+-------+-------+
+; Input Port    ; Output Port ; RR    ; RF    ; FR    ; FF    ;
++---------------+-------------+-------+-------+-------+-------+
+; ram_chip_en   ; data_out[0] ; 5.052 ; 5.052 ; 5.052 ; 5.052 ;
+; ram_chip_en   ; data_out[1] ; 4.699 ; 4.699 ; 4.699 ; 4.699 ;
+; ram_chip_en   ; data_out[2] ; 4.748 ; 4.748 ; 4.748 ; 4.748 ;
+; ram_chip_en   ; data_out[3] ; 4.786 ; 4.786 ; 4.786 ; 4.786 ;
+; ram_chip_en   ; data_out[4] ; 5.060 ; 5.060 ; 5.060 ; 5.060 ;
+; ram_chip_en   ; data_out[5] ; 4.977 ; 4.977 ; 4.977 ; 4.977 ;
+; ram_chip_en   ; data_out[6] ; 5.276 ; 5.276 ; 5.276 ; 5.276 ;
+; ram_chip_en   ; data_out[7] ; 5.567 ; 5.567 ; 5.567 ; 5.567 ;
+; ram_mode_read ; data_out[0] ; 4.946 ; 5.609 ; 5.609 ; 4.946 ;
+; ram_mode_read ; data_out[1] ; 4.910 ; 5.155 ; 5.155 ; 4.910 ;
+; ram_mode_read ; data_out[2] ; 4.826 ; 5.270 ; 5.270 ; 4.826 ;
+; ram_mode_read ; data_out[3] ; 4.900 ; 5.305 ; 5.305 ; 4.900 ;
+; ram_mode_read ; data_out[4] ; 4.913 ; 5.479 ; 5.479 ; 4.913 ;
+; ram_mode_read ; data_out[5] ; 4.823 ; 5.395 ; 5.395 ; 4.823 ;
+; ram_mode_read ; data_out[6] ; 5.136 ; 5.612 ; 5.612 ; 5.136 ;
+; ram_mode_read ; data_out[7] ; 5.179 ; 5.910 ; 5.910 ; 5.179 ;
+; reg_read      ; data_out[0] ; 4.545 ; 4.630 ; 4.630 ; 4.545 ;
+; reg_read      ; data_out[1] ; 4.509 ; 4.542 ; 4.542 ; 4.509 ;
+; reg_read      ; data_out[2] ; 4.425 ; 4.511 ; 4.511 ; 4.425 ;
+; reg_read      ; data_out[3] ; 4.499 ; 4.545 ; 4.545 ; 4.499 ;
+; reg_read      ; data_out[4] ; 4.512 ; 4.512 ; 4.512 ; 4.512 ;
+; reg_read      ; data_out[5] ; 4.422 ; 4.598 ; 4.598 ; 4.422 ;
+; reg_read      ; data_out[6] ; 4.735 ; 4.925 ; 4.925 ; 4.735 ;
+; reg_read      ; data_out[7] ; 4.778 ; 4.914 ; 4.914 ; 4.778 ;
+; rom_read      ; data_out[0] ; 4.566 ; 5.174 ; 5.174 ; 4.566 ;
+; rom_read      ; data_out[1] ; 4.530 ; 4.758 ; 4.758 ; 4.530 ;
+; rom_read      ; data_out[2] ; 4.446 ; 4.715 ; 4.715 ; 4.446 ;
+; rom_read      ; data_out[3] ; 4.520 ; 4.747 ; 4.747 ; 4.520 ;
+; rom_read      ; data_out[4] ; 4.533 ; 4.935 ; 4.935 ; 4.533 ;
+; rom_read      ; data_out[5] ; 4.443 ; 4.853 ; 4.853 ; 4.443 ;
+; rom_read      ; data_out[6] ; 4.756 ; 5.232 ; 5.232 ; 4.756 ;
+; rom_read      ; data_out[7] ; 4.799 ; 5.525 ; 5.525 ; 4.799 ;
++---------------+-------------+-------+-------+-------+-------+
+
+
++-------------------------------------------------------------+
+; Minimum Propagation Delay                                   ;
++---------------+-------------+-------+-------+-------+-------+
+; Input Port    ; Output Port ; RR    ; RF    ; FR    ; FF    ;
++---------------+-------------+-------+-------+-------+-------+
+; ram_chip_en   ; data_out[0] ; 4.608 ; 4.608 ; 4.608 ; 4.608 ;
+; ram_chip_en   ; data_out[1] ; 4.572 ; 4.572 ; 4.572 ; 4.572 ;
+; ram_chip_en   ; data_out[2] ; 4.488 ; 4.488 ; 4.488 ; 4.488 ;
+; ram_chip_en   ; data_out[3] ; 4.562 ; 4.562 ; 4.562 ; 4.562 ;
+; ram_chip_en   ; data_out[4] ; 4.575 ; 4.575 ; 4.575 ; 4.575 ;
+; ram_chip_en   ; data_out[5] ; 4.485 ; 4.485 ; 4.485 ; 4.485 ;
+; ram_chip_en   ; data_out[6] ; 4.798 ; 4.798 ; 4.798 ; 4.798 ;
+; ram_chip_en   ; data_out[7] ; 4.841 ; 4.841 ; 4.841 ; 4.841 ;
+; ram_mode_read ; data_out[0] ; 4.946 ; 4.946 ; 4.946 ; 4.946 ;
+; ram_mode_read ; data_out[1] ; 4.910 ; 4.910 ; 4.910 ; 4.910 ;
+; ram_mode_read ; data_out[2] ; 4.826 ; 4.826 ; 4.826 ; 4.826 ;
+; ram_mode_read ; data_out[3] ; 4.900 ; 4.900 ; 4.900 ; 4.900 ;
+; ram_mode_read ; data_out[4] ; 4.913 ; 4.913 ; 4.913 ; 4.913 ;
+; ram_mode_read ; data_out[5] ; 4.823 ; 4.823 ; 4.823 ; 4.823 ;
+; ram_mode_read ; data_out[6] ; 5.136 ; 5.136 ; 5.136 ; 5.136 ;
+; ram_mode_read ; data_out[7] ; 5.179 ; 5.179 ; 5.179 ; 5.179 ;
+; reg_read      ; data_out[0] ; 4.545 ; 4.545 ; 4.545 ; 4.545 ;
+; reg_read      ; data_out[1] ; 4.509 ; 4.509 ; 4.509 ; 4.509 ;
+; reg_read      ; data_out[2] ; 4.425 ; 4.425 ; 4.425 ; 4.425 ;
+; reg_read      ; data_out[3] ; 4.499 ; 4.499 ; 4.499 ; 4.499 ;
+; reg_read      ; data_out[4] ; 4.512 ; 4.311 ; 4.311 ; 4.512 ;
+; reg_read      ; data_out[5] ; 4.422 ; 4.422 ; 4.422 ; 4.422 ;
+; reg_read      ; data_out[6] ; 4.735 ; 4.735 ; 4.735 ; 4.735 ;
+; reg_read      ; data_out[7] ; 4.778 ; 4.778 ; 4.778 ; 4.778 ;
+; rom_read      ; data_out[0] ; 4.566 ; 4.566 ; 4.566 ; 4.566 ;
+; rom_read      ; data_out[1] ; 4.530 ; 4.530 ; 4.530 ; 4.530 ;
+; rom_read      ; data_out[2] ; 4.446 ; 4.446 ; 4.446 ; 4.446 ;
+; rom_read      ; data_out[3] ; 4.520 ; 4.520 ; 4.520 ; 4.520 ;
+; rom_read      ; data_out[4] ; 4.533 ; 4.533 ; 4.533 ; 4.533 ;
+; rom_read      ; data_out[5] ; 4.443 ; 4.443 ; 4.443 ; 4.443 ;
+; rom_read      ; data_out[6] ; 4.756 ; 4.756 ; 4.756 ; 4.756 ;
+; rom_read      ; data_out[7] ; 4.799 ; 4.799 ; 4.799 ; 4.799 ;
++---------------+-------------+-------+-------+-------+-------+
+
+
++-------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                           ;
++------------------+---------+-------+----------+---------+---------------------+
+; Clock            ; Setup   ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+---------+-------+----------+---------+---------------------+
+; Worst-case Slack ; -2.699  ; 0.264 ; N/A      ; N/A     ; -1.000              ;
+;  clock           ; -2.699  ; 0.264 ; N/A      ; N/A     ; -1.000              ;
+; Design-wide TNS  ; -43.722 ; 0.0   ; 0.0      ; 0.0     ; -30.602             ;
+;  clock           ; -43.722 ; 0.000 ; N/A      ; N/A     ; -30.602             ;
++------------------+---------+-------+----------+---------+---------------------+
+
+
++----------------------------------------------------------------------------+
+; Setup Times                                                                ;
++----------------+------------+-------+-------+------------+-----------------+
+; Data Port      ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++----------------+------------+-------+-------+------------+-----------------+
+; addr[*]        ; clock      ; 3.018 ; 3.018 ; Rise       ; clock           ;
+;  addr[0]       ; clock      ; 2.603 ; 2.603 ; Rise       ; clock           ;
+;  addr[1]       ; clock      ; 3.018 ; 3.018 ; Rise       ; clock           ;
+;  addr[2]       ; clock      ; 2.753 ; 2.753 ; Rise       ; clock           ;
+;  addr[3]       ; clock      ; 2.508 ; 2.508 ; Rise       ; clock           ;
+;  addr[4]       ; clock      ; 2.374 ; 2.374 ; Rise       ; clock           ;
+;  addr[5]       ; clock      ; 2.572 ; 2.572 ; Rise       ; clock           ;
+;  addr[6]       ; clock      ; 2.377 ; 2.377 ; Rise       ; clock           ;
+;  addr[7]       ; clock      ; 2.607 ; 2.607 ; Rise       ; clock           ;
+; ram_chip_en    ; clock      ; 4.624 ; 4.624 ; Rise       ; clock           ;
+; ram_mode_read  ; clock      ; 4.588 ; 4.588 ; Rise       ; clock           ;
+; ram_mode_write ; clock      ; 4.098 ; 4.098 ; Rise       ; clock           ;
+; reg_read       ; clock      ; 4.084 ; 4.084 ; Rise       ; clock           ;
+; reg_write      ; clock      ; 2.867 ; 2.867 ; Rise       ; clock           ;
+; rom_read       ; clock      ; 4.284 ; 4.284 ; Rise       ; clock           ;
++----------------+------------+-------+-------+------------+-----------------+
+
+
++------------------------------------------------------------------------------+
+; Hold Times                                                                   ;
++----------------+------------+--------+--------+------------+-----------------+
+; Data Port      ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++----------------+------------+--------+--------+------------+-----------------+
+; addr[*]        ; clock      ; -1.242 ; -1.242 ; Rise       ; clock           ;
+;  addr[0]       ; clock      ; -1.374 ; -1.374 ; Rise       ; clock           ;
+;  addr[1]       ; clock      ; -1.338 ; -1.338 ; Rise       ; clock           ;
+;  addr[2]       ; clock      ; -1.351 ; -1.351 ; Rise       ; clock           ;
+;  addr[3]       ; clock      ; -1.396 ; -1.396 ; Rise       ; clock           ;
+;  addr[4]       ; clock      ; -1.242 ; -1.242 ; Rise       ; clock           ;
+;  addr[5]       ; clock      ; -1.346 ; -1.346 ; Rise       ; clock           ;
+;  addr[6]       ; clock      ; -1.247 ; -1.247 ; Rise       ; clock           ;
+;  addr[7]       ; clock      ; -1.377 ; -1.377 ; Rise       ; clock           ;
+; ram_chip_en    ; clock      ; -1.655 ; -1.655 ; Rise       ; clock           ;
+; ram_mode_read  ; clock      ; -2.093 ; -2.093 ; Rise       ; clock           ;
+; ram_mode_write ; clock      ; -2.320 ; -2.320 ; Rise       ; clock           ;
+; reg_read       ; clock      ; -1.612 ; -1.612 ; Rise       ; clock           ;
+; reg_write      ; clock      ; -1.408 ; -1.408 ; Rise       ; clock           ;
+; rom_read       ; clock      ; -1.621 ; -1.621 ; Rise       ; clock           ;
++----------------+------------+--------+--------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Clock to Output Times                                                    ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; data_out[*]  ; clock      ; 9.710 ; 9.710 ; Rise       ; clock           ;
+;  data_out[0] ; clock      ; 8.829 ; 8.829 ; Rise       ; clock           ;
+;  data_out[1] ; clock      ; 8.164 ; 8.164 ; Rise       ; clock           ;
+;  data_out[2] ; clock      ; 8.182 ; 8.182 ; Rise       ; clock           ;
+;  data_out[3] ; clock      ; 8.323 ; 8.323 ; Rise       ; clock           ;
+;  data_out[4] ; clock      ; 8.621 ; 8.621 ; Rise       ; clock           ;
+;  data_out[5] ; clock      ; 8.511 ; 8.511 ; Rise       ; clock           ;
+;  data_out[6] ; clock      ; 9.102 ; 9.102 ; Rise       ; clock           ;
+;  data_out[7] ; clock      ; 9.710 ; 9.710 ; Rise       ; clock           ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++--------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                            ;
++--------------+------------+-------+-------+------------+-----------------+
+; Data Port    ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++--------------+------------+-------+-------+------------+-----------------+
+; data_out[*]  ; clock      ; 3.127 ; 3.127 ; Rise       ; clock           ;
+;  data_out[0] ; clock      ; 3.377 ; 3.377 ; Rise       ; clock           ;
+;  data_out[1] ; clock      ; 3.127 ; 3.127 ; Rise       ; clock           ;
+;  data_out[2] ; clock      ; 3.255 ; 3.255 ; Rise       ; clock           ;
+;  data_out[3] ; clock      ; 3.285 ; 3.285 ; Rise       ; clock           ;
+;  data_out[4] ; clock      ; 3.643 ; 3.643 ; Rise       ; clock           ;
+;  data_out[5] ; clock      ; 3.388 ; 3.388 ; Rise       ; clock           ;
+;  data_out[6] ; clock      ; 3.673 ; 3.673 ; Rise       ; clock           ;
+;  data_out[7] ; clock      ; 3.600 ; 3.600 ; Rise       ; clock           ;
++--------------+------------+-------+-------+------------+-----------------+
+
+
++---------------------------------------------------------------+
+; Progagation Delay                                             ;
++---------------+-------------+-------+--------+--------+-------+
+; Input Port    ; Output Port ; RR    ; RF     ; FR     ; FF    ;
++---------------+-------------+-------+--------+--------+-------+
+; ram_chip_en   ; data_out[0] ; 8.832 ; 8.832  ; 8.832  ; 8.832 ;
+; ram_chip_en   ; data_out[1] ; 8.104 ; 8.104  ; 8.104  ; 8.104 ;
+; ram_chip_en   ; data_out[2] ; 8.269 ; 8.269  ; 8.269  ; 8.269 ;
+; ram_chip_en   ; data_out[3] ; 8.266 ; 8.266  ; 8.266  ; 8.266 ;
+; ram_chip_en   ; data_out[4] ; 8.794 ; 8.794  ; 8.794  ; 8.794 ;
+; ram_chip_en   ; data_out[5] ; 8.673 ; 8.673  ; 8.673  ; 8.673 ;
+; ram_chip_en   ; data_out[6] ; 9.222 ; 9.222  ; 9.222  ; 9.222 ;
+; ram_chip_en   ; data_out[7] ; 9.844 ; 9.844  ; 9.844  ; 9.844 ;
+; ram_mode_read ; data_out[0] ; 8.300 ; 9.598  ; 9.598  ; 8.300 ;
+; ram_mode_read ; data_out[1] ; 8.201 ; 8.653  ; 8.653  ; 8.201 ;
+; ram_mode_read ; data_out[2] ; 8.081 ; 8.969  ; 8.969  ; 8.081 ;
+; ram_mode_read ; data_out[3] ; 8.191 ; 8.962  ; 8.962  ; 8.191 ;
+; ram_mode_read ; data_out[4] ; 8.198 ; 9.253  ; 9.253  ; 8.198 ;
+; ram_mode_read ; data_out[5] ; 8.262 ; 9.131  ; 9.131  ; 8.262 ;
+; ram_mode_read ; data_out[6] ; 8.882 ; 9.485  ; 9.485  ; 8.882 ;
+; ram_mode_read ; data_out[7] ; 8.999 ; 10.143 ; 10.143 ; 8.999 ;
+; reg_read      ; data_out[0] ; 7.796 ; 7.944  ; 7.944  ; 7.796 ;
+; reg_read      ; data_out[1] ; 7.697 ; 7.762  ; 7.762  ; 7.697 ;
+; reg_read      ; data_out[2] ; 7.577 ; 7.730  ; 7.730  ; 7.577 ;
+; reg_read      ; data_out[3] ; 7.687 ; 7.771  ; 7.771  ; 7.687 ;
+; reg_read      ; data_out[4] ; 7.694 ; 7.694  ; 7.694  ; 7.694 ;
+; reg_read      ; data_out[5] ; 7.758 ; 7.821  ; 7.821  ; 7.758 ;
+; reg_read      ; data_out[6] ; 8.378 ; 8.451  ; 8.451  ; 8.378 ;
+; reg_read      ; data_out[7] ; 8.495 ; 8.495  ; 8.495  ; 8.495 ;
+; rom_read      ; data_out[0] ; 7.996 ; 9.160  ; 9.160  ; 7.996 ;
+; rom_read      ; data_out[1] ; 7.897 ; 8.307  ; 8.307  ; 7.897 ;
+; rom_read      ; data_out[2] ; 7.777 ; 8.268  ; 8.268  ; 7.777 ;
+; rom_read      ; data_out[3] ; 7.887 ; 8.258  ; 8.258  ; 7.887 ;
+; rom_read      ; data_out[4] ; 7.894 ; 8.589  ; 8.589  ; 7.894 ;
+; rom_read      ; data_out[5] ; 7.958 ; 8.440  ; 8.440  ; 7.958 ;
+; rom_read      ; data_out[6] ; 8.578 ; 9.181  ; 9.181  ; 8.578 ;
+; rom_read      ; data_out[7] ; 8.695 ; 9.806  ; 9.806  ; 8.695 ;
++---------------+-------------+-------+--------+--------+-------+
+
+
++-------------------------------------------------------------+
+; Minimum Progagation Delay                                   ;
++---------------+-------------+-------+-------+-------+-------+
+; Input Port    ; Output Port ; RR    ; RF    ; FR    ; FF    ;
++---------------+-------------+-------+-------+-------+-------+
+; ram_chip_en   ; data_out[0] ; 4.608 ; 4.608 ; 4.608 ; 4.608 ;
+; ram_chip_en   ; data_out[1] ; 4.572 ; 4.572 ; 4.572 ; 4.572 ;
+; ram_chip_en   ; data_out[2] ; 4.488 ; 4.488 ; 4.488 ; 4.488 ;
+; ram_chip_en   ; data_out[3] ; 4.562 ; 4.562 ; 4.562 ; 4.562 ;
+; ram_chip_en   ; data_out[4] ; 4.575 ; 4.575 ; 4.575 ; 4.575 ;
+; ram_chip_en   ; data_out[5] ; 4.485 ; 4.485 ; 4.485 ; 4.485 ;
+; ram_chip_en   ; data_out[6] ; 4.798 ; 4.798 ; 4.798 ; 4.798 ;
+; ram_chip_en   ; data_out[7] ; 4.841 ; 4.841 ; 4.841 ; 4.841 ;
+; ram_mode_read ; data_out[0] ; 4.946 ; 4.946 ; 4.946 ; 4.946 ;
+; ram_mode_read ; data_out[1] ; 4.910 ; 4.910 ; 4.910 ; 4.910 ;
+; ram_mode_read ; data_out[2] ; 4.826 ; 4.826 ; 4.826 ; 4.826 ;
+; ram_mode_read ; data_out[3] ; 4.900 ; 4.900 ; 4.900 ; 4.900 ;
+; ram_mode_read ; data_out[4] ; 4.913 ; 4.913 ; 4.913 ; 4.913 ;
+; ram_mode_read ; data_out[5] ; 4.823 ; 4.823 ; 4.823 ; 4.823 ;
+; ram_mode_read ; data_out[6] ; 5.136 ; 5.136 ; 5.136 ; 5.136 ;
+; ram_mode_read ; data_out[7] ; 5.179 ; 5.179 ; 5.179 ; 5.179 ;
+; reg_read      ; data_out[0] ; 4.545 ; 4.545 ; 4.545 ; 4.545 ;
+; reg_read      ; data_out[1] ; 4.509 ; 4.509 ; 4.509 ; 4.509 ;
+; reg_read      ; data_out[2] ; 4.425 ; 4.425 ; 4.425 ; 4.425 ;
+; reg_read      ; data_out[3] ; 4.499 ; 4.499 ; 4.499 ; 4.499 ;
+; reg_read      ; data_out[4] ; 4.512 ; 4.311 ; 4.311 ; 4.512 ;
+; reg_read      ; data_out[5] ; 4.422 ; 4.422 ; 4.422 ; 4.422 ;
+; reg_read      ; data_out[6] ; 4.735 ; 4.735 ; 4.735 ; 4.735 ;
+; reg_read      ; data_out[7] ; 4.778 ; 4.778 ; 4.778 ; 4.778 ;
+; rom_read      ; data_out[0] ; 4.566 ; 4.566 ; 4.566 ; 4.566 ;
+; rom_read      ; data_out[1] ; 4.530 ; 4.530 ; 4.530 ; 4.530 ;
+; rom_read      ; data_out[2] ; 4.446 ; 4.446 ; 4.446 ; 4.446 ;
+; rom_read      ; data_out[3] ; 4.520 ; 4.520 ; 4.520 ; 4.520 ;
+; rom_read      ; data_out[4] ; 4.533 ; 4.533 ; 4.533 ; 4.533 ;
+; rom_read      ; data_out[5] ; 4.443 ; 4.443 ; 4.443 ; 4.443 ;
+; rom_read      ; data_out[6] ; 4.756 ; 4.756 ; 4.756 ; 4.756 ;
+; rom_read      ; data_out[7] ; 4.799 ; 4.799 ; 4.799 ; 4.799 ;
++---------------+-------------+-------+-------+-------+-------+
+
+
++-------------------------------------------------------------------+
+; Setup Transfers                                                   ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clock      ; clock    ; 296      ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------+
+; Hold Transfers                                                    ;
++------------+----------+----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+----------+----------+----------+----------+
+; clock      ; clock    ; 296      ; 0        ; 0        ; 0        ;
++------------+----------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths                            ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 14    ; 14   ;
+; Unconstrained Input Port Paths  ; 123   ; 123  ;
+; Unconstrained Output Ports      ; 8     ; 8    ;
+; Unconstrained Output Port Paths ; 176   ; 176  ;
++---------------------------------+-------+------+
+
+
++------------------------------------+
+; TimeQuest Timing Analyzer Messages ;
++------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II TimeQuest Timing Analyzer
+    Info: Version 9.1 Build 222 10/21/2009 SJ Web Edition
+    Info: Processing started: Wed Nov 19 17:20:41 2025
+Info: Command: quartus_sta lab_3_2 -c lab_3_2
+Info: qsta_default_script.tcl version: #2
+Info: Detected changes in Quartus II Settings File (.qsf).
+    Info: New assignment FMAX_REQUIREMENT with value 50 MHz has been added.
+Warning: Found USE_TIMEQUEST_TIMING_ANALYZER=OFF. The TimeQuest Timing Analyzer is not the default Timing Analysis Tool during full compilation.
+Critical Warning: Synopsys Design Constraints File file not found: 'lab_3_2.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info: No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info: Deriving Clocks
+    Info: create_clock -period 1.000 -name clock clock
+Info: Analyzing Slow Model
+Critical Warning: Timing requirements not met
+Info: Worst-case setup slack is -2.699
+    Info:     Slack End Point TNS Clock 
+    Info: ========= ============= =====================
+    Info:    -2.699       -43.722 clock 
+Info: Worst-case hold slack is 0.433
+    Info:     Slack End Point TNS Clock 
+    Info: ========= ============= =====================
+    Info:     0.433         0.000 clock 
+Info: No Recovery paths to report
+Info: No Removal paths to report
+Info: Worst-case minimum pulse width slack is -1.000
+    Info:     Slack End Point TNS Clock 
+    Info: ========= ============= =====================
+    Info:    -1.000       -30.314 clock 
+Info: The selected device family is not supported by the report_metastability command.
+Info: Analyzing Fast Model
+Info: Started post-fitting delay annotation
+Warning: Found 8 output pins without output pin load capacitance assignment
+    Info: Pin "data_out[7]" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
+    Info: Pin "data_out[6]" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
+    Info: Pin "data_out[5]" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
+    Info: Pin "data_out[4]" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
+    Info: Pin "data_out[3]" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
+    Info: Pin "data_out[2]" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
+    Info: Pin "data_out[1]" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
+    Info: Pin "data_out[0]" has no specified output pin load capacitance -- assuming default load capacitance of 0 pF for timing analysis
+Info: Delay annotation completed successfully
+Critical Warning: Timing requirements not met
+Info: Worst-case setup slack is -1.253
+    Info:     Slack End Point TNS Clock 
+    Info: ========= ============= =====================
+    Info:    -1.253       -18.142 clock 
+Info: Worst-case hold slack is 0.264
+    Info:     Slack End Point TNS Clock 
+    Info: ========= ============= =====================
+    Info:     0.264         0.000 clock 
+Info: No Recovery paths to report
+Info: No Removal paths to report
+Info: Worst-case minimum pulse width slack is -1.000
+    Info:     Slack End Point TNS Clock 
+    Info: ========= ============= =====================
+    Info:    -1.000       -30.602 clock 
+Info: The selected device family is not supported by the report_metastability command.
+Info: Design is not fully constrained for setup requirements
+Info: Design is not fully constrained for hold requirements
+Info: Quartus II TimeQuest Timing Analyzer was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 217 megabytes
+    Info: Processing ended: Wed Nov 19 17:20:42 2025
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+
