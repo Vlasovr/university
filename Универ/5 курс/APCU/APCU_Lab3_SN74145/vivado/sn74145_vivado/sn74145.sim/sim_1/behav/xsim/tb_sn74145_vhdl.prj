@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../../../src/sn74145_concurrent.vhd" \
+"../../../../../../src/sn74145_sequential.vhd" \
+"../../../../../../tb/tb_sn74145.vhd" \
+
+# Do not sort compile order
+nosort

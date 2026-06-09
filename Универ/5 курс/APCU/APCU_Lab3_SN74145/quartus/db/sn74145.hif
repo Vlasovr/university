@@ -1,0 +1,140 @@
+Quartus II
+Version 9.1 Build 222 10/21/2009 SJ Web Edition
+7
+3500
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+sn74145_compare_top
+# storage
+db|sn74145.(0).cnf
+db|sn74145.(0).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|users|user|desktop|apcu_lab3_sn74145|src|sn74145_compare_top.vhd
+3ef7afbb387aa5f96aebf26de5d9a5
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# include_file {
+|users|user|desktop|apcu_lab3_sn74145|src|sn74145_concurrent.vhd
+3f172d5aca451d20ec1e3ea86cc6cf7e
+|users|user|desktop|apcu_lab3_sn74145|src|sn74145_sequential.vhd
+69ce19ad5e39a668369e9330dd46e78
+}
+# hierarchies {
+|
+}
+# lmf
+d:|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+sn74145_concurrent
+# storage
+db|sn74145.(1).cnf
+db|sn74145.(1).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|users|user|desktop|apcu_lab3_sn74145|src|sn74145_concurrent.vhd
+3f172d5aca451d20ec1e3ea86cc6cf7e
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(y_o)
+9 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+sn74145_concurrent:U_LOGIC
+}
+# lmf
+d:|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+sn74145_sequential
+# storage
+db|sn74145.(2).cnf
+db|sn74145.(2).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|users|user|desktop|apcu_lab3_sn74145|src|sn74145_sequential.vhd
+69ce19ad5e39a668369e9330dd46e78
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(y_o)
+9 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+sn74145_sequential:U_SEQ
+}
+# lmf
+d:|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# complete
+

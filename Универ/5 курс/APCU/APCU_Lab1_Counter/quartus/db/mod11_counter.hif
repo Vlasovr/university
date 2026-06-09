@@ -1,0 +1,99 @@
+Quartus II
+Version 9.1 Build 222 10/21/2009 SJ Web Edition
+7
+3500
+OFF
+OFF
+OFF
+ON
+ON
+ON
+FV_OFF
+Level2
+0
+0
+VRSM_ON
+VHSM_ON
+0
+-- Start Library Paths --
+-- End Library Paths --
+-- Start VHDL Libraries --
+-- End VHDL Libraries --
+# entity
+mod11_counter_rtl_view_top
+# storage
+db|mod11_counter.(0).cnf
+db|mod11_counter.(0).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|users|user|desktop|apcu_lab1_counter|src|mod11_counter_rtl_view_top.vhd
+365d86f9fd683087c745cb3a73bb2f65
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# include_file {
+|users|user|desktop|apcu_lab1_counter|src|mod11_counter.vhd
+38db243742aa51d58eb44a8c1bb2c9e
+}
+# hierarchies {
+|
+}
+# lmf
+d:|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+mod11_counter
+# storage
+db|mod11_counter.(1).cnf
+db|mod11_counter.(1).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+|users|user|desktop|apcu_lab1_counter|src|mod11_counter.vhd
+38db243742aa51d58eb44a8c1bb2c9e
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(q_o)
+3 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+mod11_counter:U_COUNTER
+}
+# lmf
+d:|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# complete
+

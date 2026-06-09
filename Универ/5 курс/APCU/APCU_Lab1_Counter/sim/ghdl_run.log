@@ -1,0 +1,4 @@
+﻿GHDL run log for mod11_counter
+
+C:\Users\user\AppData\Local\Temp\apcu_lab1_counter_ghdl\tb\tb_mod11_counter.vhd:77:5:@156ns:(assertion note): tb_mod11_counter: TEST PASSED
+ghdl:info: simulation stopped by --stop-time @180ns

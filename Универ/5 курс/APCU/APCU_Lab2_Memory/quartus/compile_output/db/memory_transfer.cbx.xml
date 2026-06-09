@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="memory_transfer">
+		<CBX_INST_ENTRY INSTANCE_NAME="|memory_transfer_rtl_view_top|memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|altsyncram:ram_rtl_0" CBX_FILE_NAME="altsyncram_j5n1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

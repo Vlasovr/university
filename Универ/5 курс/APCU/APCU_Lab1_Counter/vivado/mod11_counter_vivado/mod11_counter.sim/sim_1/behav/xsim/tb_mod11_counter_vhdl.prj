@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../../../src/mod11_counter.vhd" \
+"../../../../../../tb/tb_mod11_counter.vhd" \
+
+# Do not sort compile order
+nosort

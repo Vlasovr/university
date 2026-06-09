@@ -1,0 +1,56 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 5.058 ns
+From           : RST
+To             : memory_transfer:U_MEMORY_TRANSFER|reg_q[7]
+From Clock     : --
+To Clock       : CLOCK
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 8.381 ns
+From           : memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|q_reg[0]~en
+To             : BUS_D2
+From Clock     : CLOCK
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -3.158 ns
+From           : START
+To             : memory_transfer:U_MEMORY_TRANSFER|state_reg.S_IDLE
+From Clock     : --
+To Clock       : CLOCK
+Failed Paths   : 0
+
+Type           : Clock Setup: 'CLOCK'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 461.47 MHz ( period = 2.167 ns )
+From           : memory_transfer:U_MEMORY_TRANSFER|state_reg.S_READ_ROM
+To             : memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|altsyncram:ram_rtl_0|altsyncram_j5n1:auto_generated|ram_block1a0~porta_datain_reg7
+From Clock     : CLOCK
+To Clock       : CLOCK
+Failed Paths   : 0
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 0
+
+--------------------------------------------------------------------------------------
+

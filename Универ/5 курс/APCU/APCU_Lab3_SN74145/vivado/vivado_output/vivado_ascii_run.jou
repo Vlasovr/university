@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Tue Jun  9 17:33:30 2026
+# Process ID: 4272
+# Current directory: D:/git/university/Универ
+# Command line: vivado.exe -mode batch -source D:\vivado_stage\apcu_lab3_sn74145\vivado\create_project.tcl -journal D:\vivado_stage\apcu_lab3_sn74145\vivado\vivado_ascii_run.jou -log D:\vivado_stage\apcu_lab3_sn74145\vivado\vivado_ascii_run.log
+# Log file: D:/vivado_stage/apcu_lab3_sn74145/vivado/vivado_ascii_run.log
+# Journal file: D:\vivado_stage\apcu_lab3_sn74145\vivado\vivado_ascii_run.jou
+# Running On: WIN-LOA9MVM5AL7, OS: Windows, CPU Frequency: 2296 MHz, CPU Physical cores: 12, Host memory: 14870 MB
+#-----------------------------------------------------------
+source {D:\vivado_stage\apcu_lab3_sn74145\vivado\create_project.tcl}

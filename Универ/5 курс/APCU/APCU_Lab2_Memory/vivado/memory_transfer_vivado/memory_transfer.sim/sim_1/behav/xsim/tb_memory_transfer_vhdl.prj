@@ -1,0 +1,9 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../../../src/lpm_ram_io_model.vhd" \
+"../../../../../../src/lpm_rom_model.vhd" \
+"../../../../../../src/memory_transfer.vhd" \
+"../../../../../../tb/tb_memory_transfer.vhd" \
+
+# Do not sort compile order
+nosort

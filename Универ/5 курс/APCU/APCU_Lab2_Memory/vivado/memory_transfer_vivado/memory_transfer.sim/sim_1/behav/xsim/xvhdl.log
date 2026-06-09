@@ -1,0 +1,8 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/user/Desktop/APCU_Lab2_Memory/src/lpm_ram_io_model.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'lpm_ram_io_model'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/user/Desktop/APCU_Lab2_Memory/src/lpm_rom_model.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'lpm_rom_model'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/user/Desktop/APCU_Lab2_Memory/src/memory_transfer.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'memory_transfer'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/user/Desktop/APCU_Lab2_Memory/tb/tb_memory_transfer.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_memory_transfer'

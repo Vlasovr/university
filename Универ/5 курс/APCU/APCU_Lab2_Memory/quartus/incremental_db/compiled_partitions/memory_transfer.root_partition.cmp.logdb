@@ -1,0 +1,9 @@
+v1
+RAM_PACKING,0,M512,18,18,SimpleDual,0,8,10000010,memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|altsyncram:ram_rtl_0|altsyncram_j5n1:auto_generated|ram_block1a3,
+RAM_PACKING,0,M512,18,18,SimpleDual,0,2,10000010,memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|altsyncram:ram_rtl_0|altsyncram_j5n1:auto_generated|ram_block1a2,
+RAM_PACKING,0,M512,18,18,SimpleDual,0,5,10000010,memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|altsyncram:ram_rtl_0|altsyncram_j5n1:auto_generated|ram_block1a1,
+RAM_PACKING,0,M512,18,18,SimpleDual,0,12,10000010,memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|altsyncram:ram_rtl_0|altsyncram_j5n1:auto_generated|ram_block1a0,
+RAM_PACKING,0,M512,18,18,SimpleDual,0,9,10000010,memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|altsyncram:ram_rtl_0|altsyncram_j5n1:auto_generated|ram_block1a7,
+RAM_PACKING,0,M512,18,18,SimpleDual,0,4,10000010,memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|altsyncram:ram_rtl_0|altsyncram_j5n1:auto_generated|ram_block1a6,
+RAM_PACKING,0,M512,18,18,SimpleDual,0,6,10000010,memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|altsyncram:ram_rtl_0|altsyncram_j5n1:auto_generated|ram_block1a4,
+RAM_PACKING,0,M512,18,18,SimpleDual,0,11,10000010,memory_transfer:U_MEMORY_TRANSFER|lpm_ram_io_model:U_RAM|altsyncram:ram_rtl_0|altsyncram_j5n1:auto_generated|ram_block1a5,

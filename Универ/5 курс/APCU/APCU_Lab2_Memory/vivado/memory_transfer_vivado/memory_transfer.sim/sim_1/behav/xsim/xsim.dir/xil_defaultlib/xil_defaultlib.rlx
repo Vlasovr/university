@@ -1,0 +1,8 @@
+0.7
+2020.2
+Apr 18 2022
+16:05:34
+C:/Users/user/Desktop/APCU_Lab2_Memory/src/lpm_ram_io_model.vhd,1780997232,vhdl,C:/Users/user/Desktop/APCU_Lab2_Memory/src/memory_transfer.vhd,,,lpm_ram_io_model,,,,,,,,
+C:/Users/user/Desktop/APCU_Lab2_Memory/src/lpm_rom_model.vhd,1780997214,vhdl,C:/Users/user/Desktop/APCU_Lab2_Memory/src/memory_transfer.vhd,,,lpm_rom_model,,,,,,,,
+C:/Users/user/Desktop/APCU_Lab2_Memory/src/memory_transfer.vhd,1780997247,vhdl,C:/Users/user/Desktop/APCU_Lab2_Memory/tb/tb_memory_transfer.vhd,,,memory_transfer,,,,,,,,
+C:/Users/user/Desktop/APCU_Lab2_Memory/tb/tb_memory_transfer.vhd,1780997275,vhdl,,,,tb_memory_transfer,,,,,,,,

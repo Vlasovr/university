@@ -1,0 +1,13 @@
+v 4
+file "C:\Users\user\Desktop\APCU_Lab3_SN74145\" "tb\tb_sn74145.vhd" "0e619cf18cda21b3b4a3115d6d6c4d28c9c89a10" "20260609142849.567":
+  entity tb_sn74145 at 1( 0) + 0 on 17;
+  architecture sim of tb_sn74145 at 8( 104) + 0 on 18;
+file "C:\Users\user\Desktop\APCU_Lab3_SN74145\" "src\sn74145_compare_top.vhd" "1b7552310a13327240a30a89375ba7d3b744e5a3" "20260609142849.556":
+  entity sn74145_compare_top at 1( 0) + 0 on 15;
+  architecture structural of sn74145_compare_top at 34( 850) + 0 on 16;
+file "C:\Users\user\Desktop\APCU_Lab3_SN74145\" "src\sn74145_sequential.vhd" "3f9ef4c3897e4c68f6b99454917b1883e968492b" "20260609142849.549":
+  entity sn74145_sequential at 1( 0) + 0 on 13;
+  architecture rtl of sn74145_sequential at 14( 243) + 0 on 14;
+file "C:\Users\user\Desktop\APCU_Lab3_SN74145\" "src\sn74145_concurrent.vhd" "2310b8e516d1716472647919b03a8e2a7b570c0b" "20260609142849.542":
+  entity sn74145_concurrent at 1( 0) + 0 on 11;
+  architecture rtl of sn74145_concurrent at 14( 243) + 0 on 12;

@@ -1,0 +1,31 @@
+|mod11_counter_rtl_view_top
+CLOCK => mod11_counter:U_COUNTER.clk_i
+RST => mod11_counter:U_COUNTER.rst_i
+EN => mod11_counter:U_COUNTER.en_i
+LOAD => mod11_counter:U_COUNTER.load_i
+Q0 <= mod11_counter:U_COUNTER.q_o[0]
+Q1 <= mod11_counter:U_COUNTER.q_o[1]
+Q2 <= mod11_counter:U_COUNTER.q_o[2]
+Q3 <= mod11_counter:U_COUNTER.q_o[3]
+TC <= mod11_counter:U_COUNTER.tc_o
+
+
+|mod11_counter_rtl_view_top|mod11_counter:U_COUNTER
+clk_i => count_reg[0].CLK
+clk_i => count_reg[1].CLK
+clk_i => count_reg[2].CLK
+clk_i => count_reg[3].CLK
+rst_i => process_0.IN0
+en_i => count_reg.OUTPUTSELECT
+en_i => count_reg.OUTPUTSELECT
+en_i => count_reg.OUTPUTSELECT
+en_i => count_reg.OUTPUTSELECT
+en_i => tc_o.IN1
+load_i => process_0.IN1
+q_o[0] <= count_reg[0].DB_MAX_OUTPUT_PORT_TYPE
+q_o[1] <= count_reg[1].DB_MAX_OUTPUT_PORT_TYPE
+q_o[2] <= count_reg[2].DB_MAX_OUTPUT_PORT_TYPE
+q_o[3] <= count_reg[3].DB_MAX_OUTPUT_PORT_TYPE
+tc_o <= tc_o.DB_MAX_OUTPUT_PORT_TYPE
+
+

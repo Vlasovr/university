@@ -1,0 +1,3 @@
+﻿GHDL run log for APCU combination lab, variant 4, SN74145
+
+tb\tb_sn74145.vhd:65:5:@160ns:(assertion note): tb_sn74145: TEST PASSED; checked 16 BCD/input combinations

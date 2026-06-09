@@ -1,0 +1,13 @@
+v 4
+file "C:\Users\user\Desktop\APCU_Lab2_Memory\" "tb\tb_memory_transfer.vhd" "96974592c812f24f36a8ac06f69f89cb8a536677" "20260609092810.362":
+  entity tb_memory_transfer at 1( 0) + 0 on 17;
+  architecture sim of tb_memory_transfer at 8( 112) + 0 on 18;
+file "C:\Users\user\Desktop\APCU_Lab2_Memory\" "src\memory_transfer.vhd" "f2b31bbbd327fd497b31e7d46788f5303243d47a" "20260609092810.354":
+  entity memory_transfer at 1( 0) + 0 on 15;
+  architecture rtl of memory_transfer at 23( 684) + 0 on 16;
+file "C:\Users\user\Desktop\APCU_Lab2_Memory\" "src\lpm_ram_io_model.vhd" "62d608b799f0e48f405d1a848a93138b1363aaa4" "20260609092810.348":
+  entity lpm_ram_io_model at 1( 0) + 0 on 13;
+  architecture rtl of lpm_ram_io_model at 16( 378) + 0 on 14;
+file "C:\Users\user\Desktop\APCU_Lab2_Memory\" "src\lpm_rom_model.vhd" "eaa39c078d9f331be8b50e0e8b05e87df94833a0" "20260609092810.340":
+  entity lpm_rom_model at 1( 0) + 0 on 11;
+  architecture rtl of lpm_rom_model at 14( 282) + 0 on 12;

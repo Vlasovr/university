@@ -1,0 +1,6 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/user/Desktop/APCU_Lab3_SN74145/src/sn74145_concurrent.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'sn74145_concurrent'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/user/Desktop/APCU_Lab3_SN74145/src/sn74145_sequential.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'sn74145_sequential'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/user/Desktop/APCU_Lab3_SN74145/tb/tb_sn74145.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_sn74145'

@@ -1,0 +1,4 @@
+﻿GHDL run log for APCU Lab 2 memory transfer, variant 4
+
+tb\tb_memory_transfer.vhd:81:5:@66ns:(assertion note): tb_memory_transfer: TEST PASSED
+ghdl:info: simulation stopped by --stop-time @130ns
