@@ -1,0 +1,354 @@
+Модем
+ZTE MT-PON-AT-4 f609
+Скрины
+
+Маршрутизатор
+Mikrotik RB960PGS
+Код
+
+Коммутатор
+FS S3260-16T4FP
+Код
+
+3 точки доступа
+Cudy AP3000 1.0
+Скрины
+
+Принтер
+мфу canon i-sensys mf463dw 5951c008
+Скрины
+
+ПК
+R5600G-16G-NV512
+https://cooler.by/?p=a17s22d45h293r1910t135A22i1547z1c2#p
+
+Факс
+Panasonic KX-FLC418RU
+
+__________________________________
+
+Настройка и проверка оборудования:
+
+Вход в маршрутизатор
+MikroTik 7.7 (stable)
+MikroTik Login: admin
+Password: 
+
+Смена пароля
+new password> PSS435%1
+repeat new password> PSS435%1
+
+Очистка консоли Ctrl+L
+
+
+Настройка PPoE:
+[admin@MikroTik] > /interface pppoe-client
+[admin@MikroTik] /interface/pppoe-client> add name=pppoe-out1 \
+[admin@MikroTik] /interface/pppoe-client> interface=ether1 \
+[admin@MikroTik] /interface/pppoe-client> user=1799932042104505@beltel.by \
+[admin@MikroTik] /interface/pppoe-client> password=1738503855313443563 \
+[admin@MikroTik] /interface/pppoe-client> use-peer-dns=yes \
+[admin@MikroTik] /interface/pppoe-client> add-default-route=yes \
+[admin@MikroTik] /interface/pppoe-client> disabled=no
+
+Добавление статического ipv6
+[admin@MikroTik] /system package enable ipv6
+[admin@MikroTik] /system reboot
+[admin@MikroTik] /ipv6 address add address=2001:db8:1234:5678::2/64 interface=pppoe-out1 advertise=no 
+[admin@MikroTik] /ipv6 route add dst-address=::/0 gateway=2001:db8:1234:5678::1
+
+// Это в GNS3
+Настройка WAN (DHCP-клиент)
+[admin@MikroTik] /ip/dhcp-client> add interface=ether1 disabled=no
+Проверка:
+[admin@MikroTik] /ip/dhcp-client> /ip dhcp-client print
+Columns: INTERFACE, USE-PEER-DNS, ADD-DEFAULT-ROUTE, STATUS, ADDRESS
+# INTERFACE  USE-PEER-DNS  ADD-DEFAULT-ROUTE  STATUS  ADDRESS         
+0 ether1     yes           yes                bound   192.168.0.245/24
+[admin@MikroTik] /ip/dhcp-client> /ip address print
+Flags: D - DYNAMIC
+Columns: ADDRESS, NETWORK, INTERFACE
+#   ADDRESS           NETWORK      INTERFACE
+0 D 192.168.0.245/24  192.168.0.0  wan   
+[admin@MikroTik] /ip/dhcp-client> /ip route print
+Flags: D - DYNAMIC; A - ACTIVE; c - CONNECT, d - DHCP
+Columns: DST-ADDRESS, GATEWAY, DISTANCE
+    DST-ADDRESS     GATEWAY      DISTANCE
+DAd 0.0.0.0/0       192.168.0.1         1
+DAc 192.168.0.0/24  wan              0
+//
+
+Настройка NAT:
+[admin@MikroTik] /ip/dhcp-server/network> /ip firewall nat
+[admin@MikroTik] /ip/firewall/nat> add chain=srcnat out-interface=pppoe-out1 action=masquerade
+
+Настройка Firewall:    
+[admin@MikroTik] /ip/firewall/nat> /ip firewall filter
+[admin@MikroTik] /ip/firewall/filter> add chain=input connection-state=established,related action=accept
+[admin@MikroTik] /ip/firewall/filter> add chain=input connection-state=invalid action=drop
+[admin@MikroTik] /ip/firewall/filter> add chain=input protocol=icmpv6 action=accept 
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=ether2 action=accept    
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=pppoe-out1 action=drop   
+
+Проверка сети:
+[admin@MikroTik] /ip/firewall/filter> /   
+[admin@MikroTik] > ping 8.8.8.8
+  SEQ HOST                                     SIZE TTL TIME       STATUS                              
+    0 8.8.8.8                                    56 115 30ms102us 
+    1 8.8.8.8                                    56 115 29ms159us 
+    2 8.8.8.8                                    56 115 29ms432us 
+    3 8.8.8.8                                    56 115 29ms341us 
+    4 8.8.8.8                                    56 115 29ms199us 
+    sent=5 received=5 packet-loss=0% min-rtt=29ms159us avg-rtt=29ms446us max-rtt=30ms102us 
+    
+Разделение сети на VLAN
+Нужно обеспечить стационарным пк доступ к принтеру
+Настройка роутера:
+Настройка VLAN:
+[admin@MikroTik] > /interface vlan
+[admin@MikroTik] /interface/vlan> add name=vlan10-office interface=ether2 vlan-id=10 
+[admin@MikroTik] /interface/vlan> add name=vlan20-wifi   interface=ether2 vlan-id=20 
+Удаления старого пула адресов и DHCP сервера:
+[admin@MikroTik] /ip dhcp-server remove 0
+[admin@MikroTik] /ip pool remove lan-pool
+[admin@MikroTik] /ip dhcp-server network remove 0
+Добавление IP для каждого VLAN:
+[admin@MikroTik] /ip address
+[admin@MikroTik] /ip/address> add address=192.168.10.1/28 interface=vlan10-office
+[admin@MikroTik] /ip/address> add address=192.168.20.1/24 interface=vlan20-wifi
+Удаление старого ip:
+[admin@MikroTik] /ip/pool> /ip address print
+Flags: D - DYNAMIC
+Columns: ADDRESS, NETWORK, INTERFACE
+#   ADDRESS                NETWORK                INTERFACE
+0   2001:db8:abcd:1::2/64  2001:db8:1234:5678::1  pppoe-out1  
+1 D 192.168.0.245/24       192.168.0.0            pppoe-out1         
+3   192.168.20.1/24        192.168.20.0           vlan20-wifi  
+4   192.168.10.1/28        192.168.10.0           vlan10-office
+5   192.168.100.1/29       192.168.100.0          vlan20-wifi   
+Добавление DHCP для VLAN20:
+Создание пула адресов
+[admin@MikroTik] /ip/address> /ip pool
+[admin@MikroTik] /ip/pool> add name=pool-wifi ranges=192.168.20.50-192.168.20.100
+Создание DHCP-сервера
+[admin@MikroTik] /ip/pool> /ip dhcp-server
+[admin@MikroTik] /ip/dhcp-server> add name=dhcp-wifi interface=vlan20-wifi address-pool=pool-wifi disabled=no
+Задание параметров DHCP-сети
+[admin@MikroTik] /ip dhcp-server network
+[admin@MikroTik] /ip/dhcp-server/network> add address=192.168.20.0/24 gateway=192.168.20.1 dns-server=192.168.20.1
+Включение остальных портов:
+[admin@MikroTik] /ip/dhcp-server/network> /interface ethernet
+[admin@MikroTik] /interface/ethernet> set ether3 disabled=yes auto-negotiation=no poe-out=off
+[admin@MikroTik] /interface/ethernet> set ether4 disabled=yes auto-negotiation=no poe-out=off
+[admin@MikroTik] /interface/ethernet> set ether5 disabled=yes auto-negotiation=no poe-out=off
+
+Настройка коммутатора:
+Включение:
+Switch#enable
+Добавление имен VLAN:
+Switch#configure terminal
+Switch(config)#vlan 10
+Switch(config-vlan)#name OFFICE
+Switch(config-vlan)#exit
+Switch(config)#vlan 20
+Switch(config-vlan)#name WIFI
+Switch(config-vlan)#exit
+Switch(config)#vlan 100
+Switch(config-vlan)#name MGMT
+Switch(config-vlan)#exit
+Добавление коммутатора в VLAN100:
+Switch#configure terminal
+Switch(config)#interface vlan 100
+Switch(config-if))#ip address 192.168.100.2 255.255.255.248
+Switch(config-if))#no shutdown
+Switch(config-if))#exit
+Switch(config)#ip default-gateway 192.168.100.1
+Switch(config)#end
+Порт к маршрутизатору (Gi0/0):
+Switch#configure terminal
+Switch(config)#interface GigabitEthernet0/0
+Switch(config-if)#switchport trunk encapsulation dot1q
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#switchport trunk allowed vlan 10,20,100
+Switch(config-if)#spanning-tree portfast trunk
+Switch(config-if)#no shutdown
+Switch(config-if)#end
+Порт для настройки сети (Gi3/3):
+Switch#configure terminal
+Switch(config)#interface GigabitEthernet3/3
+Switch(config-if)#switchport trunk encapsulation dot1q
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#switchport trunk allowed vlan 100
+Switch(config-if)#spanning-tree portfast trunk
+Switch(config-if)#no shutdown
+Switch(config-if)#end
+Порты к точке доступа (Gi0/1,Gi0/2,Gi0/3):
+Switch#configure terminal
+Switch(config)#interface range GigabitEthernet0/1 - 3
+Switch(config-if)#switchport trunk encapsulation dot1q
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#switchport trunk allowed vlan 20,100
+Switch(config-if)#spanning-tree portfast trunk
+Switch(config-if)#no shutdown
+Switch(config-if)#end
+Порты к ПК и принтеру (Gi1/0-Gi1/3,Gi2/0):
+Switch#configure terminal
+Switch(config)#interface range GigabitEthernet1/0 - 3
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 10
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#no shutdown
+Switch(config-if)#end
+Switch(config)#interface GigabitEthernet2/0
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan 10
+Switch(config-if)#spanning-tree portfast
+Switch(config-if)#no shutdown
+Switch(config-if)#end
+Включение Port-security:
+Switch(config)#interface range GigabitEthernet0/1 - 3
+Switch(config-if)#switchport port-security
+Switch(config-if)#switchport port-security maximum 50
+Switch(config-if)#switchport port-security violation restrict
+Switch(config-if)#end
+Switch(config)#interface range GigabitEthernet1/0 - 3
+Switch(config-if)#switchport port-security
+Switch(config-if)#switchport port-security maximum 1
+Switch(config-if)#switchport port-security violation shutdown
+Switch(config-if)#end
+Switch(config)#interface range GigabitEthernet2/0
+Switch(config-if)#switchport port-security
+Switch(config-if)#switchport port-security maximum 1
+Switch(config-if)#switchport port-security violation shutdown
+Switch(config-if)#end
+Включение фильтрации по MAC для пк и принтера:
+Switch(config)#interface GigabitEthernet1/0
+Switch(config-if)#switchport port-security mac-address 00:50:79:66:68:01
+Switch(config-if)#end
+Switch(config)#interface GigabitEthernet1/1
+Switch(config-if)#switchport port-security mac-address 00:50:79:66:68:02
+Switch(config-if)#end
+Switch(config)#interface GigabitEthernet1/2
+Switch(config-if)#switchport port-security mac-address 00:50:79:66:68:03
+Switch(config-if)#end
+Switch(config)#interface GigabitEthernet1/3
+Switch(config-if)#switchport port-security mac-address 00:50:79:66:68:04
+Switch(config-if)#end
+Switch(config)#interface GigabitEthernet2/0
+Switch(config-if)#switchport port-security mac-address 00:50:79:66:68:00
+Switch(config-if)#end
+Включение остальных портов:
+Switch#configure terminal
+Switch(config)#interface range GigabitEthernet2/1 - 3
+Switch(config-if)#switchport access vlan 999
+Switch(config-if)#shutdown
+Switch(config-if)#end
+Switch(config)#interface range GigabitEthernet3/0 - 2
+Switch(config-if)#switchport access vlan 999
+Switch(config-if)#shutdown
+Switch(config-if)#end
+
+Настройка статической маршрутизации на пк и принтере:
+PC2> ip 192.168.10.2/28 192.168.10.1
+PC3> ip 192.168.10.3/28 192.168.10.1
+PC4> ip 192.168.10.4/28 192.168.10.1
+PC1> ip 192.168.10.5/28 192.168.10.1
+P> ip 192.168.10.6/28 192.168.10.1
+
+Настрока точек доступа
+Для эмуляции точек доступа используется Linux Alphine, Wifi здесь не будет,
+но скрины настройки будут предствалены
+Настройка DNS:
+alpine:~# echo "nameserver 1.1.1.1" > /etc/resolv.conf
+alpine:~# echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+Запись автозагрузки VLAN-модуля:
+alpine:~# echo 8021q >> /etc/modules
+Декларативная настрока интерфейсов:
+alpine:~# vi /etc/network/interfaces
+Текст для вставки:
+_________________________
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet manual
+
+auto eth0.100
+iface eth0.100 inet static
+    address 192.168.100.3 (100.4, 100.5)
+    netmask 255.255.255.248
+    gateway 192.168.100.1
+__________________________
+
+alpine:~# vi /etc/local.d/ap.start
+Текст для вставки:
+_________________________
+
+
+modprobe 8021q
+
+ip link add link eth0 name eth0.20 type vlan id 20
+ip link set eth0.20 up
+
+ip link add br-client type bridge
+ip link set br-client up
+
+ip link set eth0.20 master br-client
+ip link set eth1 master br-client
+ip link set eth1 up
+__________________________
+alpine:~# chmod +x /etc/local.d/ap.start
+alpine:~# rc-update add local default
+alpine:~# rc-service local restart
+
+При подсоединении утроства к точке доступа, на данном этапе, достаточно лишь написать команду ip dhcp
+Настройка Wifi Скринами:
+
+
+Настройка Firewall на роутере:
+
+[admin@MikroTik] /ip/firewall/filter> /ip firewall filter remove [find]
+[admin@MikroTik] /ip/firewall/filter> add chain=input action=accept connection-state=established,related
+[admin@MikroTik] /ip/firewall/filter> add chain=input action=drop connection-state=invalid
+
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=vlan100-mgmt dst-address=192.168.100.1 action=accept              
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=vlan100-mgmt action=drop
+
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=vlan20-wifi dst-address=192.168.20.1 protocol=udp dst-port=67 action=accept
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=vlan20-wifi dst-address=192.168.20.1 protocol=udp dst-port=53 action=accept
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=vlan20-wifi dst-address=192.168.20.1 protocol=tcp dst-port=53 action=accept
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=vlan20-wifi dst-address=192.168.20.1 protocol=icmp action=accept
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=vlan20-wifi action=drop
+
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=vlan10-office dst-address=192.168.10.1 protocol=icmp action=accept
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=vlan10-office action=drop
+
+[admin@MikroTik] /ip/firewall/filter> add chain=forward action=accept connection-state=established,related
+[admin@MikroTik] /ip/firewall/filter> add chain=forward action=drop connection-state=invalid
+
+[admin@MikroTik] /ip/firewall/filter> add chain=forward in-interface=vlan10-office out-interface=vlan20-wifi action=drop
+[admin@MikroTik] /ip/firewall/filter> add chain=forward in-interface=vlan10-office out-interface=vlan100-mgmt action=drop
+[admin@MikroTik] /ip/firewall/filter> add chain=forward in-interface=vlan20-wifi out-interface=vlan20-wifi action=drop
+[admin@MikroTik] /ip/firewall/filter> add chain=forward in-interface=vlan20-wifi out-interface=vlan10-office action=drop
+[admin@MikroTik] /ip/firewall/filter> add chain=forward in-interface=vlan20-wifi out-interface=vlan100-mgmt action=drop
+[admin@MikroTik] /ip/firewall/filter> add chain=forward in-interface=vlan100-mgmt out-interface=vlan10-office action=drop
+[admin@MikroTik] /ip/firewall/filter> add chain=forward in-interface=vlan100-mgmt out-interface=vlan20-wifi action=drop
+
+[admin@MikroTik] /ip/firewall/filter> add chain=forward in-interface=vlan100-mgmt out-interface=pppoe-out1 action=drop
+[admin@MikroTik] /ip/firewall/filter> add chain=forward in-interface=vlan20-wifi out-interface=pppoe-out1 action=accept
+[admin@MikroTik] /ip/firewall/filter> add chain=forward src-address=192.168.10.5 out-interface=pppoe-out1 action=drop
+[admin@MikroTik] /ip/firewall/filter> add chain=forward in-interface=vlan10-office out-interface=pppoe-out1 action=accept
+[admin@MikroTik] /ip/firewall/filter> add chain=forward action=drop
+
+[admin@MikroTik] /ip/firewall/filter> add chain=input in-interface=pppoe-out1 action=drop
+
+Преимущество офисному трафику
+[admin@MikroTik] /ip firewall mangle
+[admin@MikroTik] /ip/firewall/mangle> add chain=forward in-interface=vlan10-office action=mark-packet new-packet-mark=office_pkt passthrough=yes
+[admin@MikroTik] /ip/firewall/mangle> /queue tree
+[admin@MikroTik] /queue/tree> add name=TOTAL parent=pppoe-out1 max-limit=500M
+[admin@MikroTik] /queue/tree> add name=OFFICE parent=TOTAL packet-mark=office_pkt priority=1 limit-at=350M max-limit=500M
+[admin@MikroTik] /queue/tree> add name=OTHER parent=TOTAL priority=8 max-limit=500M
+
+
+
